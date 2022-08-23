@@ -1,1 +1,17 @@
-a
+Structure back:
+
+- Schéma BDD
+- Migrations
+- Seeders
+
+Administration:
+
+- Page login
+- Page liste convertions (avec bouton suppression dans les 2 sens)
+- Page création convertion (convertion dans les 2 sens)
+- Page édition convertion (édition dans les 2 sens)
+- Suppression convertion
+
+User:
+
+- Page liste convertions
