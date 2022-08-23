@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('currency_to_convert_id')->nullable();
             $table->foreign('currency_to_convert_id')->references('id')->on('currencies')->onDelete('set null');
             $table->foreignId('currency_converted_id')->nullable();
-            $table->foreign('currency_converted_id')->references('id')->on('currencies ')->onDelete('set null');
+            $table->foreign('currency_converted_id')->references('id')->on('currencies')->onDelete('set null');
             $table->string('pair_reference', 16)->nullable();
             $table->decimal('conversion_rate', $precision = 8, $scale = 2)->nullable();
             $table->timestamps();
