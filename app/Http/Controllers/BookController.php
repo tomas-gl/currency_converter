@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Conversion;
 use Illuminate\Http\Request;
 
-class ConversionController extends Controller
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,7 @@ class ConversionController extends Controller
      */
     public function index()
     {
-        //
+        return "dashboard";
     }
 
     /**
@@ -41,10 +40,10 @@ class ConversionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Conversion  $conversion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Conversion $conversion)
+    public function show($id)
     {
         //
     }
@@ -52,10 +51,10 @@ class ConversionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Conversion  $conversion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Conversion $conversion)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +63,10 @@ class ConversionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Conversion  $conversion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Conversion $conversion)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +74,10 @@ class ConversionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Conversion  $conversion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Conversion $conversion)
+    public function destroy($id)
     {
         //
     }
