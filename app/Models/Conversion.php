@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Conversion extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+		'currency_to_convert',
+		'currency_converted',
+		'pair_reference',
+		'conversion_rate',
+	];
 }

@@ -24,12 +24,12 @@ return new class extends Migration
         DB::table('currencies')->insert(
             array(
                 [
-                    'currency_name' => 'US dollar',
-                    'iso_code' => 'USD',
-                ],
-                [
                     'currency_name' => 'European Euro',
                     'iso_code' => 'EUR',
+                ],
+                [
+                    'currency_name' => 'US dollar',
+                    'iso_code' => 'USD',
                 ],
                 [
                     'currency_name' => 'Japanese yen',
