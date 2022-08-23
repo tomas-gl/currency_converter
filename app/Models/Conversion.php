@@ -10,8 +10,8 @@ class Conversion extends Model
     use HasFactory;
 
     protected $fillable = [
-		'currency_to_convert',
-		'currency_converted',
+		'currency_to_convert_id',
+		'currency_converted_id',
 		'pair_reference',
 		'conversion_rate',
 	];
