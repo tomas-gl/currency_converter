@@ -14,7 +14,8 @@ class ConversionAdminController extends Controller
      */
     public function index()
     {
-        return "dashboard";
+       $conversions = Conversion::all(['id', 'currency_to_convert_id', 'currency_converted_id', 'pair_reference_number', 'conversion_rate']);
+       return response()->json($conversions);
     }
 
     /**
@@ -35,7 +36,11 @@ class ConversionAdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $conversions = Conversion::all($request->post());
+        return response()->json([
+            'message' => "Conversion successfully created !",
+            'conversion' => $conversions
+        ]);
     }
 
     /**
@@ -46,7 +51,7 @@ class ConversionAdminController extends Controller
      */
     public function show(Conversion $conversion)
     {
-        //
+        return response()->json($conversion);
     }
 
     /**
@@ -69,7 +74,11 @@ class ConversionAdminController extends Controller
      */
     public function update(Request $request, Conversion $conversion)
     {
-        //
+        $conversions->fill($request->post())->save();
+        return response()->json([
+            'message' => 'Conversion successfully updated !',
+            'conversion' => $conversion
+        ]);
     }
 
     /**
@@ -80,6 +89,9 @@ class ConversionAdminController extends Controller
      */
     public function destroy(Conversion $conversion)
     {
-        //
+        $conversion->delete();
+        return response()->json([
+            'message' => 'Conversion successfully deleted !',
+        ]);
     }
 }
