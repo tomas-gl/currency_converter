@@ -23,7 +23,7 @@ Route::get('/', function () {
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
+// Route::get('/admin', [HomeController::class, 'index'])->middleware('auth')->name('home');
 // Route::resource('admin/book', 'ConversionAdminController')->middleware('auth');
 
 // routes sécurisées
@@ -31,4 +31,4 @@ Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name(
 // 	'admin/books' => 'book',
 // ]);
 
-// Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
