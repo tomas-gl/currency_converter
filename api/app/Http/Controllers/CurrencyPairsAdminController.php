@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CurrencyPairs;
+use App\Models\Currencies;
 
 class CurrencyPairsAdminController extends Controller
 {
@@ -15,7 +16,12 @@ class CurrencyPairsAdminController extends Controller
     public function index()
     {
         $currency_pairs = CurrencyPairs::all();
-        return response()->json($currency_pairs);
+        foreach($currency_pairs as $key=>$currency_pair){
+            if($currency_pair->first_currency_id)
+            $first_currency_id = Currencies::where("id", $currency_pairs->first_currency_id)->first()->iso_code; 
+            // $data['products'][$key]['categorie'] = Category::where("id", $product->category_id)->first()->name; 
+        }
+        return response()->json($first_currency_id);
         //     [
         //         'first_currency_id' => $first_currency_id,
         //         'second_currency_id' => $second_currency_id,

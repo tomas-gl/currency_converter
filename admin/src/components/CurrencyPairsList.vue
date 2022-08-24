@@ -3,21 +3,25 @@
     <table class="table">
         <thead>
             <tr>
-            <th scope="col">#</th>
-            <th scope="col">Paire de devises</th>
-            <th scope="col">Taux de conversion</th>
+                <th scope="col">#</th>
+                <th scope="col">Paire de devises</th>
+                <th scope="col">Taux de conversion</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody v-for="currency_pair in currency_pairs" :key="currency_pair.id">
             <tr class="table-secondary">
-            <th scope="row">{{ currency_pair.id }}</th>
-            <td>
-                {{ currency_pair.first_currency_id }} -> {{ currency_pair.second_currency_id }}
-                 /
-                {{ currency_pair.second_currency_id }} -> {{ currency_pair.first_currency_id }}
-            
-            </td>
-            <td>{{ currency_pair.conversion_rate }}</td>
+                <th scope="row">{{ currency_pair.id }}</th>
+                <td>
+                    {{ currency_pair.first_currency_id }} -> {{ currency_pair.second_currency_id }}
+                    /
+                    {{ currency_pair.second_currency_id }} -> {{ currency_pair.first_currency_id }}
+                
+                </td>
+                <td>{{ currency_pair.conversion_rate }}</td>
+                <td><button type="button" class="btn btn-primary">Editer</button></td>
+                <td><button type="button" class="btn btn-danger">Supprimer</button></td>
             </tr>
         </tbody>
     </table>
