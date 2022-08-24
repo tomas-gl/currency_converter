@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('conversion_count', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('conversion_id')->references('id')->on('conversions')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('conversion_id')->references('id')->on('currency_pairs')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('count')->nullable();
             $table->timestamps();
         });

@@ -13,55 +13,33 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('conversions', function (Blueprint $table) {
+        Schema::create('currency_pairs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('currency_to_convert_id')->nullable();
-            $table->foreign('currency_to_convert_id')->references('id')->on('currencies')->onDelete('set null');
-            $table->foreignId('currency_converted_id')->nullable();
-            $table->foreign('currency_converted_id')->references('id')->on('currencies')->onDelete('set null');
-            $table->string('pair_reference_number', 13)->nullable();
+            $table->foreignId('first_currency_id')->nullable();
+            $table->foreign('first_currency_id')->references('id')->on('currencies')->onDelete('set null');
+            $table->foreignId('second_currency_id')->nullable();
+            $table->foreign('second_currency_id')->references('id')->on('currencies')->onDelete('set null');
             $table->decimal('conversion_rate', $precision = 8, $scale = 2)->nullable();
             $table->timestamps();
         });
 
         // Insert some stuff
-        DB::table('conversions')->insert(
+        DB::table('currency_pairs')->insert(
             array(
                 [
-                'currency_to_convert_id' => 1,
-                'currency_converted_id' => 2,
-                'pair_reference_number' => '1661269611966',
+                'first_currency_id' => 1,
+                'second_currency_id' => 2,
                 'conversion_rate' => '1.5'
                 ],
                 [
-                'currency_to_convert_id' => 2,
-                'currency_converted_id' => 1,
-                'pair_reference_number' => '1661269611966',
-                'conversion_rate' => '0.67'
-                ],
-                [
-                'currency_to_convert_id' => 3,
-                'currency_converted_id' => 4,
-                'pair_reference_number' => '1661269616095',
+                'first_currency_id' => 3,
+                'second_currency_id' => 4,
                 'conversion_rate' => '3.6'
                 ],
                 [
-                'currency_to_convert_id' => 4,
-                'currency_converted_id' => 3,
-                'pair_reference_number' => '1661269616095',
-                'conversion_rate' => '0.28'
-                ],
-                [
-                'currency_to_convert_id' => 6,
-                'currency_converted_id' => 7,
-                'pair_reference_number' => '1661269619796',
+                'first_currency_id' => 6,
+                'second_currency_id' => 7,
                 'conversion_rate' => '4'
-                ],
-                [
-                'currency_to_convert_id' => 7,
-                'currency_converted_id' => 6,
-                'pair_reference_number' => '1661269619796',
-                'conversion_rate' => '0.25'
                 ],
             )
         );
