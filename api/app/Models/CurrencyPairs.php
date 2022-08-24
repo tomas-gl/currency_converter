@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Conversion extends Model
+class CurrencyPairs extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-		'currency_to_convert_id',
-		'currency_converted_id',
-		'pair_reference',
+		'first_currency_id',
+		'second_currency_id',
 		'conversion_rate',
 	];
 }

@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
-        // return Redirect::to('http://heera.it');
+        // return view('home');
+        return Redirect::to('http://localhost:8080/');
     }
 }
