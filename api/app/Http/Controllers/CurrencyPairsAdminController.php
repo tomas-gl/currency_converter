@@ -17,11 +17,12 @@ class CurrencyPairsAdminController extends Controller
     {
         $currency_pairs = CurrencyPairs::all();
         foreach($currency_pairs as $key=>$currency_pair){
-            if($currency_pair->first_currency_id)
-            $first_currency_id = Currencies::where("id", $currency_pairs->first_currency_id)->first()->iso_code; 
+            if($currency_pair->first_currency_id && $currency_pair->second_currency_id)
+            $currency_pair['first_currency_iso_code'] = Currencies::where("id", $currency_pair->first_currency_id)->first()->iso_code; 
+            $currency_pair['second_currency_iso_code'] = Currencies::where("id", $currency_pair->second_currency_id)->first()->iso_code; 
             // $data['products'][$key]['categorie'] = Category::where("id", $product->category_id)->first()->name; 
         }
-        return response()->json($first_currency_id);
+        return response()->json($currency_pairs);
         //     [
         //         'first_currency_id' => $first_currency_id,
         //         'second_currency_id' => $second_currency_id,

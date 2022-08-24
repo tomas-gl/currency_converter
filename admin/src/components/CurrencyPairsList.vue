@@ -14,12 +14,12 @@
             <tr class="table-secondary">
                 <th scope="row">{{ currency_pair.id }}</th>
                 <td>
-                    {{ currency_pair.first_currency_id }} -> {{ currency_pair.second_currency_id }}
+                    {{ currency_pair.first_currency_iso_code }} -> {{ currency_pair.second_currency_iso_code }}
                     /
-                    {{ currency_pair.second_currency_id }} -> {{ currency_pair.first_currency_id }}
+                    {{ currency_pair.second_currency_iso_code }} -> {{ currency_pair.first_currency_iso_code }}
                 
                 </td>
-                <td>{{ currency_pair.conversion_rate }}</td>
+                <td>{{ currency_pair.conversion_rate }} / {{ 1/currency_pair.conversion_rate }}</td>
                 <td><button type="button" class="btn btn-primary">Editer</button></td>
                 <td><button type="button" class="btn btn-danger">Supprimer</button></td>
             </tr>
@@ -51,6 +51,9 @@
                     console.log(error);
                 });
             }
+            //   formatNumber(num){
+            //     return parseFloat(num).toFixed(2)
+            // }
         },
         mounted(){
             // console.log('currency pairs mounted')
