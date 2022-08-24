@@ -8,11 +8,16 @@
             <th scope="col">Taux de conversion</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody v-for="currency_pair in currency_pairs" :key="currency_pair.id">
             <tr class="table-secondary">
-            <th scope="row">1</th>
-            <td>Première devise -> Seconde devise</td>
-            <td>5</td>
+            <th scope="row">{{ currency_pair.id }}</th>
+            <td>
+                {{ currency_pair.first_currency_id }} -> {{ currency_pair.second_currency_id }}
+                 /
+                {{ currency_pair.second_currency_id }} -> {{ currency_pair.first_currency_id }}
+            
+            </td>
+            <td>{{ currency_pair.conversion_rate }}</td>
             </tr>
         </tbody>
     </table>
