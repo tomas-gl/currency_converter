@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\CurrencyPairs;
-use App\Models\Currencies;
+use App\Models\CurrencyPair;
+use App\Models\Currency;
 
 class CurrencyPairsAdminController extends Controller
 {
@@ -13,13 +13,13 @@ class CurrencyPairsAdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function currencyPairsList()
     {
-        $currency_pairs = CurrencyPairs::all();
+        $currency_pairs = CurrencyPair::all();
         foreach($currency_pairs as $key=>$currency_pair){
             if($currency_pair->first_currency_id && $currency_pair->second_currency_id)
-            $currency_pair['first_currency_iso_code'] = Currencies::where("id", $currency_pair->first_currency_id)->first()->iso_code; 
-            $currency_pair['second_currency_iso_code'] = Currencies::where("id", $currency_pair->second_currency_id)->first()->iso_code; 
+            $currency_pair['first_currency_iso_code'] = Currency::where("id", $currency_pair->first_currency_id)->first()->iso_code; 
+            $currency_pair['second_currency_iso_code'] = Currency::where("id", $currency_pair->second_currency_id)->first()->iso_code; 
             // $data['products'][$key]['categorie'] = Category::where("id", $product->category_id)->first()->name; 
         }
         return response()->json($currency_pairs);
@@ -48,9 +48,17 @@ class CurrencyPairsAdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeCurrencyPair(Request $request)
     {
-        //
+        $currency_pair = new CurrencyPair();
+        $currency_pair->first_currency_id = $request->first_currency_id;
+        $currency_pair->second_currency_id = $request->second_currency_id;
+        $currency_pair->conversion_rate = $request->conversion_rate;
+        $currency_pair->save();
+        return response()->json([
+            'message' => 'Contact Created Successfully',
+            'code' => 200
+        ]);
     }
 
     /**

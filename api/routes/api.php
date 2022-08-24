@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 // Route::resource('conversion', App\Http\Controllers\ConversionAdminController::class)->only(['index','store','show','update','destroy']);
 
-Route::get('currency_pairs',[App\Http\Controllers\CurrencyPairsAdminController::class, 'index']);
+Route::get('currency_pairs',[App\Http\Controllers\CurrencyPairsAdminController::class, 'currencyPairsList']);
+
+Route::get('save_contact',[App\Http\Controllers\CurrencyPairsAdminController::class, 'storeCurrencyPair']);
 
 // Route::get('currency_pairs', 'CurrencyPairsAdminController@index');
