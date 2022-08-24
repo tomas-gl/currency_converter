@@ -37,9 +37,10 @@ class CurrencyPairsAdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function getCurrencies()
     {
-        //
+        $currencies = Currency::all();
+        return response()->json($currencies);
     }
 
     /**

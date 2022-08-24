@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('currency_pairs',[App\Http\Controllers\CurrencyPairsAdminController::class, 'currencyPairsList']);
 
+
+Route::get('currencies',[App\Http\Controllers\CurrencyPairsAdminController::class, 'getCurrencies']);
 Route::post('save_currency_pair',[App\Http\Controllers\CurrencyPairsAdminController::class, 'saveCurrencyPair']);
 
 // Route::get('currency_pairs', 'CurrencyPairsAdminController@index');

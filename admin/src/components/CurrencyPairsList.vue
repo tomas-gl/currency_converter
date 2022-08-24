@@ -17,7 +17,6 @@
                     {{ currency_pair.first_currency_iso_code }} -> {{ currency_pair.second_currency_iso_code }}
                     /
                     {{ currency_pair.second_currency_iso_code }} -> {{ currency_pair.first_currency_iso_code }}
-                
                 </td>
                 <td>{{ currency_pair.conversion_rate }} / {{ 1/currency_pair.conversion_rate }}</td>
                 <td><button type="button" class="btn btn-primary">Editer</button></td>

@@ -1,37 +1,19 @@
 <template>
     <div class="container">
         <div class="row mt-5">
-            <div class="offset-3 col-6">
+            <div class="col-12 offset-md-3 col-md-6">
                 <form @submit.prevent="saveCurrencyPair" novalidate class="row p-5 border rounded">
 
                     <div class="mb-3 col-12 col-md-6">
                         <label for="exampleFormControlSelect1">Première devise</label>
                             <select class="form-control" v-model="first_currency_id">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
+                                <option v-for="currency in currencies" :key="currency.id">{{ currency.iso_code }}</option>
                             </select>
                     </div>
                     <div class="mb-3 col-12 col-md-6">
                         <label for="exampleFormControlSelect1">Seconde devise</label>
                             <select class="form-control" v-model="second_currency_id">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
+                                <option v-for="currency in currencies" :key="currency.id">{{ currency.iso_code }}</option>
                             </select>
                     </div>
 
@@ -81,14 +63,27 @@ export default {
         name: 'AddCurrencyPair',
         data(){
             return {
+                currencies:Array,
                 currency_pair: {},
                 first_currency_id: '',
                 second_currency_id: '',
                 conversion_rate: '',
                 errors: []
             }
+        },        
+        created(){
+            this.getCurrencies();
         },
         methods:{
+            async getCurrencies(){
+                let url = 'http://127.0.0.1:8000/api/currencies'
+                await axios.get(url).then(response =>{
+                    this.currencies = response.data;
+                    console.log(this.currencies);
+                }).catch(error =>{
+                    console.log(error);
+                });
+            },
             async saveCurrencyPair(){
                 this.errors = [];
                 if(!this.first_currency_id || !this.second_currency_id){
