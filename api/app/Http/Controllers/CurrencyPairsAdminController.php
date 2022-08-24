@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\CurrencyPairs;
 
-class CurrencyPairsController extends Controller
+class CurrencyPairsAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,14 +15,14 @@ class CurrencyPairsController extends Controller
     public function index()
     {
         $currency_pairs = CurrencyPairs::all();
-        return response()->json(
-            [
-                'first_currency_id' => $first_currency_id,
-                'second_currency_id' => $second_currency_id,
-                'conversion_rate' => $conversion_rate,
-                'code' => 200
-            ]
-        );
+        return response()->json($currency_pairs);
+        //     [
+        //         'first_currency_id' => $first_currency_id,
+        //         'second_currency_id' => $second_currency_id,
+        //         'conversion_rate' => $conversion_rate,
+        //         // 'code' => 200
+        //     ]
+        // );
     }
 
     /**

@@ -21,8 +21,30 @@
 
 <script>
     import axios from 'axios';
-    
+
     export default {
-        name: 'CurrencyPairsList'
+        name: 'CurrencyPairsList',
+        data(){
+            return{
+                currency_pairs:Array
+            }
+        },
+        created(){
+            this.getCurrencyPairs();
+        },
+        methods:{
+            async getCurrencyPairs(){
+                let url = 'http://127.0.0.1:8000/api/currency_pairs'
+                await axios.get(url).then(response =>{
+                    this.currency_pairs = response.data;
+                    console.log(this.currency_pairs);
+                }).catch(error =>{
+                    console.log(error);
+                });
+            }
+        },
+        mounted(){
+            // console.log('currency pairs mounted')
+        }
     }
 </script>
