@@ -48,7 +48,7 @@ class CurrencyPairsAdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeCurrencyPair(Request $request)
+    public function saveCurrencyPair(Request $request)
     {
         $currency_pair = new CurrencyPair();
         $currency_pair->first_currency_id = $request->first_currency_id;
@@ -56,7 +56,7 @@ class CurrencyPairsAdminController extends Controller
         $currency_pair->conversion_rate = $request->conversion_rate;
         $currency_pair->save();
         return response()->json([
-            'message' => 'Contact Created Successfully',
+            'message' => 'Paire de devises créé !',
             'code' => 200
         ]);
     }
