@@ -14,7 +14,7 @@
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="add_conversion">Ajouter conversions</router-link>
+                        <router-link class="nav-link" to="add_currency_pairs">Ajouter paires de devise</router-link>
                     </li>
                 </ul>
                 </div>

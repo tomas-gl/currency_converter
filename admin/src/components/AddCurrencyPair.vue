@@ -1,11 +1,11 @@
 <template>
     <div>
-        <h1>Liste conversions</h1>
+        <h1>Ajouter paires de devise</h1>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'AddConversion'
+        name: 'AddCurrencyPair'
 }
 </script>

@@ -19,3 +19,5 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Route::resource('conversion', App\Http\Controllers\ConversionAdminController::class)->only(['index','store','show','update','destroy']);
+
+Route::get('currency_pairs',[App\Http\Controllers\CurrencyPairsController::class, 'currency_pairs']);

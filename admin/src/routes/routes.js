@@ -1,17 +1,17 @@
-import ConversionList from '../components/ConversionsList';
-import AddConversion from '../components/AddConversion';
+import CurrencyPairsList from '../components/CurrencyPairsList';
+import AddCurrencyPair from '../components/AddCurrencyPair';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
     {
-        name: 'ConversionsList',
+        name: 'CurrencyPairsList',
         path: '/',
-        component: ConversionList
+        component: CurrencyPairsList
     },
     {
-        name: 'AddConversion',
-        path: '/add_conversion',
-        component: AddConversion
+        name: 'AddCurrencyPair',
+        path: '/add_currency_pair',
+        component: AddCurrencyPair
     }
 ]
 

@@ -13,7 +13,15 @@ class CurrencyPairsController extends Controller
      */
     public function index()
     {
-        //
+        $currency_pairs = CurrencyPairs::all();
+        return response()->json(
+            [
+                'first_currency_id' => $first_currency_id,
+                'second_currency_id' => $second_currency_id,
+                'conversion_rate' => $conversion_rate,
+                'code' => 200
+            ]
+        );
     }
 
     /**
