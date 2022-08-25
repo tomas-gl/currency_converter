@@ -10,21 +10,22 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody v-for="currency_pair in currency_pairs" :key="currency_pair.id">
+        <tbody v-for="currencyPair in currencyPairs" :key="currencyPair.id">
             <tr class="table-secondary">
-                <th scope="row">{{ currency_pair.id }}</th>
+                <th scope="row">{{ currencyPair.id }}</th>
                 <td>
-                    {{ currency_pair.first_currency_iso_code }} -> {{ currency_pair.second_currency_iso_code }}
+                    {{ currencyPair.first_currency_iso_code }} -> {{ currencyPair.second_currency_iso_code }}
                     /
-                    {{ currency_pair.second_currency_iso_code }} -> {{ currency_pair.first_currency_iso_code }}
+                    {{ currencyPair.second_currency_iso_code }} -> {{ currencyPair.first_currency_iso_code }}
                 </td>
-                <td>{{ currency_pair.conversion_rate }} / {{ 1/currency_pair.conversion_rate }}</td>
-                <td><button type="button" class="btn btn-primary">Editer</button></td>
-                <td><button type="button" class="btn btn-danger" @click.prevent="deleteCurrencyPair(currency_pair.id)">Supprimer</button></td>
+                <td>{{ currencyPair.conversion_rate }} / {{ 1/currencyPair.conversion_rate }}</td>
+                <td><router-link :to="{ name:'EditCurrencyPair', params: { id: currencyPair.id} }" type="button" class="btn btn-primary">Modifier</router-link></td>
+                <td><button type="button" class="btn btn-danger" @click.prevent="deleteCurrencyPair(currencyPair.id)">Supprimer</button></td>
             </tr>
         </tbody>
     </table>
-    <div class="toast fade show position-fixed bottom-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true" v-if="currency_pair_deleted == true">
+
+    <div class="toast fade show position-fixed bottom-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true" v-if="currencyPairDeleted == true">
         <div class="toast-header">
             <strong class="me-auto">Message de confirmation</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -43,8 +44,8 @@
         name: 'CurrencyPairsList',
         data(){
             return{
-                currency_pairs:Array,
-                currency_pair_deleted: false,
+                currencyPairs:Array,
+                currencyPairDeleted: false,
             }
         },
         created(){
@@ -52,20 +53,20 @@
         },
         methods:{
             async getCurrencyPairs(){
-                let url = 'http://127.0.0.1:8000/api/currency_pairs'
+                let url = 'http://127.0.0.1:8000/api/currencyPairs'
                 await axios.get(url).then(response =>{
-                    this.currency_pairs = response.data;
-                    console.log(this.currency_pairs);
+                    this.currencyPairs = response.data;
+                    console.log(this.currencyPairs);
                 }).catch(error =>{
                     console.log(error);
                 });
             },
             async deleteCurrencyPair(id){
-                let url = `http://127.0.0.1:8000/api/delete_currency_pair/${id}`;
+                let url = `http://127.0.0.1:8000/api/deleteCurrencyPair/${id}`;
                 await axios.delete(url).then(response =>{
                     if(response.data.code == 200){
                         // alert(response.data.message);
-                        this.currency_pair_deleted = true;
+                        this.currencyPairDeleted = true;
                         this.getCurrencyPairs();
                     }
                 }).catch(error =>{

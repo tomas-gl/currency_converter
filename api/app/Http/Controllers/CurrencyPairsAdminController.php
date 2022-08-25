@@ -15,14 +15,14 @@ class CurrencyPairsAdminController extends Controller
      */
     public function currencyPairsList()
     {
-        $currency_pairs = CurrencyPair::all();
-        foreach($currency_pairs as $key=>$currency_pair){
-            if($currency_pair->first_currency_id && $currency_pair->second_currency_id)
-            $currency_pair['first_currency_iso_code'] = Currency::where("id", $currency_pair->first_currency_id)->first()->iso_code; 
-            $currency_pair['second_currency_iso_code'] = Currency::where("id", $currency_pair->second_currency_id)->first()->iso_code; 
+        $currencyPairs = CurrencyPair::all();
+        foreach($currencyPairs as $key=>$currencyPair){
+            if($currencyPair->first_currency_id && $currencyPair->second_currency_id)
+            $currencyPair['first_currency_iso_code'] = Currency::where("id", $currencyPair->first_currency_id)->first()->iso_code; 
+            $currencyPair['second_currency_iso_code'] = Currency::where("id", $currencyPair->second_currency_id)->first()->iso_code; 
             // $data['products'][$key]['categorie'] = Category::where("id", $product->category_id)->first()->name; 
         }
-        return response()->json($currency_pairs);
+        return response()->json($currencyPairs);
         //     [
         //         'first_currency_id' => $first_currency_id,
         //         'second_currency_id' => $second_currency_id,
@@ -51,11 +51,11 @@ class CurrencyPairsAdminController extends Controller
      */
     public function saveCurrencyPair(Request $request)
     {
-        $currency_pair = new CurrencyPair();
-        $currency_pair->first_currency_id = $request->first_currency_id;
-        $currency_pair->second_currency_id = $request->second_currency_id;
-        $currency_pair->conversion_rate = $request->conversion_rate;
-        $currency_pair->save();
+        $currencyPair = new CurrencyPair();
+        $currencyPair->first_currency_id = $request->firstCurrencyId;
+        $currencyPair->second_currency_id = $request->secondCurrencyId;
+        $currencyPair->conversion_rate = $request->conversionRate;
+        $currencyPair->save();
         return response()->json([
             'message' => 'Paire de devises créé !',
             'code' => 200
@@ -79,9 +79,10 @@ class CurrencyPairsAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function getCurrencyPair($id)
     {
-        //
+        $currencyPair = CurrencyPair::find($id); 
+        return response()->json($currencyPair);
     }
 
     /**
@@ -104,9 +105,9 @@ class CurrencyPairsAdminController extends Controller
      */
     public function deleteCurrencyPair($id)
     {
-        $currency_pair = CurrencyPair::find($id);
-        if($currency_pair){
-            $currency_pair->delete();
+        $currencyPair = CurrencyPair::find($id);
+        if($currencyPair){
+            $currencyPair->delete();
             return response()->json([
                 'message' => 'Paire de devises supprimée !',
                 'code' => 200

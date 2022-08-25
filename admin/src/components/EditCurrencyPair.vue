@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-12 offset-md-3 col-md-6">
-                <form @submit.prevent="saveCurrencyPair" novalidate class="row p-5 border rounded">
+                <form @submit.prevent="updateCurrencyPair" novalidate class="row p-5 border rounded">
 
                     <div class="mb-3 col-12 col-md-6">
                         <label for="exampleFormControlSelect1">Première devise</label>
@@ -62,14 +62,14 @@
     import axios from 'axios';
 
     export default {
-        name: 'AddCurrencyPair',
+        name: 'EditCurrencyPair',
         data(){
             return {
                 firstSelectedCurrency: '',
                 secondSelectedCurrency: '',
                 convertedCurrency: '',
                 currencies:Array,
-                currencyPair: {},
+                currency_pair: {},
                 firstCurrencyId: '',
                 secondCurrencyId: '',
                 conversionRate: '',
@@ -94,10 +94,10 @@
                 this.convertedCurrency = 1/event.target.value;
             },
             async getCurrencyPairs(){
-                let url = 'http://127.0.0.1:8000/api/currencyPairs'
+                let url = 'http://127.0.0.1:8000/api/currency_pairs'
                 await axios.get(url).then(response =>{
-                    this.currencyPairs = response.data;
-                    console.log(this.currencyPairs);
+                    this.currency_pairs = response.data;
+                    console.log(this.currency_pairs);
                 }).catch(error =>{
                     console.log(error);
                 });
@@ -111,12 +111,18 @@
                     console.log(error);
                 });
             },
-            async saveCurrencyPair(){
+            async getCurrencyPairById(){
+                // let url = `http://127.0.0.1:8000/api/currencies/${this.route.params.id}`;
+                // await axios.get(url).then(response =>{
+                //     // this.currencyPair
+                // })
+            },
+            async updateCurrencyPair(){
                 this.errors = [];
-                this.currencyPairs.forEach(element => {
-                    if(element.first_currency_id == this.firstCurrencyId && element.second_currency_id == this.secondCurrencyId
+                this.currency_pairs.forEach(element => {
+                    if(element.firstCurrencyId == this.firstCurrencyId && element.secondCurrencyId == this.secondCurrencyId
                      ||
-                     element.first_currency_id == this.secondCurrencyId && element.second_currency_id == this.firstCurrencyId){
+                     element.firstCurrencyId == this.secondCurrencyId && element.secondCurrencyId == this.firstCurrencyId){
                         this.errors.push("Paire de devises déjà existante")
                     }
                 });
@@ -136,7 +142,7 @@
                     formData.append('secondCurrencyId', this.secondCurrencyId);
                     formData.append('conversionRate', this.conversionRate);
                     console.log(formData);
-                    let url = 'http://127.0.0.1:8000/api/saveCurrencyPair';
+                    let url = 'http://127.0.0.1:8000/api/save_currency_pair';
                     await axios.post(url, formData).then((response) =>{
                         console.log(response);
                         if(response.status == 200){

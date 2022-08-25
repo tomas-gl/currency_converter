@@ -1,5 +1,6 @@
 import CurrencyPairsList from '../components/CurrencyPairsList';
 import AddCurrencyPair from '../components/AddCurrencyPair';
+import EditCurrencyPair from '../components/EditCurrencyPair';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
@@ -12,6 +13,11 @@ const routes = [
         name: 'AddCurrencyPair',
         path: '/add_currency_pair',
         component: AddCurrencyPair
+    },
+    {
+        name: 'EditCurrencyPair',
+        path: '/currency_pair/edit/:id?',
+        component: EditCurrencyPair
     }
 ]
 
