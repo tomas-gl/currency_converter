@@ -69,7 +69,7 @@
                 secondSelectedCurrency: '',
                 convertedCurrency: '',
                 currencies:Array,
-                currencyPair: {},
+                currencyPairs: {},
                 firstCurrencyId: '',
                 secondCurrencyId: '',
                 conversionRate: '',

@@ -26,7 +26,7 @@
                     </div>
                     <div class="mb-3 col-12 col-md-5">
                         <label>{{ secondSelectedCurrency }}</label>
-                        <input type="number" step=".01" min="0" class="form-control" placeholder="Taux de conversion" 
+                        <input type="number" step=".01" min="0" class="form-control" placeholder="Taux de conversion"
                                 v-model="conversionRate" 
                                 @change="convertCurrency($event)">
                     </div>
@@ -69,7 +69,7 @@
                 secondSelectedCurrency: '',
                 convertedCurrency: '',
                 currencies:Array,
-                currency_pair: {},
+                currencyPair: {},
                 firstCurrencyId: '',
                 secondCurrencyId: '',
                 conversionRate: '',
@@ -79,6 +79,7 @@
         created(){
             this.getCurrencyPairs();
             this.getCurrencies();
+            this.getCurrencyPairById();
         },
         methods:{
             getFirstSelectedCurrency(event){
@@ -94,10 +95,10 @@
                 this.convertedCurrency = 1/event.target.value;
             },
             async getCurrencyPairs(){
-                let url = 'http://127.0.0.1:8000/api/currency_pairs'
+                let url = 'http://127.0.0.1:8000/api/currencyPairs'
                 await axios.get(url).then(response =>{
-                    this.currency_pairs = response.data;
-                    console.log(this.currency_pairs);
+                    this.currencyPairs = response.data;
+                    console.log(this.currencyPairs);
                 }).catch(error =>{
                     console.log(error);
                 });
@@ -112,10 +113,15 @@
                 });
             },
             async getCurrencyPairById(){
-                // let url = `http://127.0.0.1:8000/api/currencies/${this.route.params.id}`;
-                // await axios.get(url).then(response =>{
-                //     // this.currencyPair
-                // })
+                let url = `http://127.0.0.1:8000/api/getCurrencyPair/${this.$route.params.id}`;
+                await axios.get(url).then(response =>{
+                    console.log(response);
+                    this.currencyPair = response.data;
+                    this.firstCurrencyId = this.currencyPair.first_currency_id;
+                    this.secondCurrencyId = this.currencyPair.second_currency_id;
+                    this.conversionRate = this.currencyPair.conversion_rate;
+                    this.convertedCurrency = 1/this.currencyPair.conversion_rate;
+                });
             },
             async updateCurrencyPair(){
                 this.errors = [];
@@ -151,6 +157,9 @@
                     });
                 }
             }
+        },
+        mounted: function(){
+            console.log('edit component loaded..');
         }
     }
 </script>
