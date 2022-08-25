@@ -24,6 +24,9 @@ Route::get('currency_pairs',[App\Http\Controllers\CurrencyPairsAdminController::
 
 
 Route::get('currencies',[App\Http\Controllers\CurrencyPairsAdminController::class, 'getCurrencies']);
+
 Route::post('save_currency_pair',[App\Http\Controllers\CurrencyPairsAdminController::class, 'saveCurrencyPair']);
+
+Route::delete('delete_currency_pair/{id}',[App\Http\Controllers\CurrencyPairsAdminController::class, 'deleteCurrencyPair']);
 
 // Route::get('currency_pairs', 'CurrencyPairsAdminController@index');

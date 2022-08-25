@@ -20,10 +20,19 @@
                 </td>
                 <td>{{ currency_pair.conversion_rate }} / {{ 1/currency_pair.conversion_rate }}</td>
                 <td><button type="button" class="btn btn-primary">Editer</button></td>
-                <td><button type="button" class="btn btn-danger">Supprimer</button></td>
+                <td><button type="button" class="btn btn-danger" @click.prevent="deleteCurrencyPair(currency_pair.id)">Supprimer</button></td>
             </tr>
         </tbody>
     </table>
+    <div class="toast fade show position-fixed bottom-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true" v-if="currency_pair_deleted == true">
+        <div class="toast-header">
+            <strong class="me-auto">Message de confirmation</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Paire de devises supprimée !
+        </div>
+    </div>
 </div>
 </template>
 
@@ -34,7 +43,8 @@
         name: 'CurrencyPairsList',
         data(){
             return{
-                currency_pairs:Array
+                currency_pairs:Array,
+                currency_pair_deleted: false,
             }
         },
         created(){
@@ -49,10 +59,19 @@
                 }).catch(error =>{
                     console.log(error);
                 });
+            },
+            async deleteCurrencyPair(id){
+                let url = `http://127.0.0.1:8000/api/delete_currency_pair/${id}`;
+                await axios.delete(url).then(response =>{
+                    if(response.data.code == 200){
+                        // alert(response.data.message);
+                        this.currency_pair_deleted = true;
+                        this.getCurrencyPairs();
+                    }
+                }).catch(error =>{
+                    console.log(error);
+                });
             }
-            //   formatNumber(num){
-            //     return parseFloat(num).toFixed(2)
-            // }
         },
         mounted(){
             // console.log('currency pairs mounted')

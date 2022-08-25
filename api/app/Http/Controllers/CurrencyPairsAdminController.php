@@ -102,8 +102,19 @@ class CurrencyPairsAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteCurrencyPair($id)
     {
-        //
+        $currency_pair = CurrencyPair::find($id);
+        if($currency_pair){
+            $currency_pair->delete();
+            return response()->json([
+                'message' => 'Paire de devises supprimée !',
+                'code' => 200
+            ]);
+        } else{
+            return response()->json([
+                'message' => "Paire de devises de l'$id n'existe pas",
+            ]);
+        }
     }
 }
