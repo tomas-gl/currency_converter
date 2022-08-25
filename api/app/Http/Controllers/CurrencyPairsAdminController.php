@@ -94,7 +94,15 @@ class CurrencyPairsAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $currencyPair = CurrencyPair::where('id', $id)->first();
+        $currencyPair->first_currency_id = $request->firstCurrencyId;
+        $currencyPair->second_currency_id = $request->secondCurrencyId;
+        $currencyPair->conversion_rate = $request->conversionRate;
+        $currencyPair->save();
+        return response()->json([
+            'message' => 'Paire de devises mise à jour !',
+            'code' => 200
+        ]);
     }
 
     /**

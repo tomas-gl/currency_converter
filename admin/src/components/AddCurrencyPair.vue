@@ -143,6 +143,7 @@
                             alert(response.data.message);
                         }
                     });
+                    this.getCurrencyPairs();
                 }
             }
         }

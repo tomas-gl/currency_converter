@@ -121,6 +121,16 @@
                     this.secondCurrencyId = this.currencyPair.second_currency_id;
                     this.conversionRate = this.currencyPair.conversion_rate;
                     this.convertedCurrency = 1/this.currencyPair.conversion_rate;
+                    this.currencies.forEach(el => {
+                        if(el.id == this.currencyPair.first_currency_id){
+                            this.firstSelectedCurrency = el.iso_code
+                        }
+                    });
+                    this.currencies.forEach(el => {
+                        if(el.id == this.currencyPair.second_currency_id){
+                            this.secondSelectedCurrency = el.iso_code
+                        }
+                    });
                 });
             },
             async updateCurrencyPair(){
