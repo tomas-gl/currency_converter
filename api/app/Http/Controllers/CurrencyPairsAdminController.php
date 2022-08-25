@@ -92,7 +92,7 @@ class CurrencyPairsAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateCurrencyPair(Request $request, $id)
     {
         $currencyPair = CurrencyPair::where('id', $id)->first();
         $currencyPair->first_currency_id = $request->firstCurrencyId;

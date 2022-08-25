@@ -51,7 +51,7 @@
                         </ul>
                     </div>
                    
-                    <button type="submit" class="btn btn-primary w-auto mx-auto">Créer</button>
+                    <button type="submit" class="btn btn-primary w-auto mx-auto">Modifier</button>
                 </form>
             </div>
         </div>
@@ -98,6 +98,11 @@
                 let url = 'http://127.0.0.1:8000/api/currencyPairs'
                 await axios.get(url).then(response =>{
                     this.currencyPairs = response.data;
+                    for(var i = 0; i < this.currencyPairs.length; i++){
+                        if (this.currencyPairs[i].id == this.$route.params.id){
+                            this.currencyPairs.splice(i, 1);
+                        }
+                    }
                     console.log(this.currencyPairs);
                 }).catch(error =>{
                     console.log(error);
@@ -123,22 +128,22 @@
                     this.convertedCurrency = 1/this.currencyPair.conversion_rate;
                     this.currencies.forEach(el => {
                         if(el.id == this.currencyPair.first_currency_id){
-                            this.firstSelectedCurrency = el.iso_code
+                            this.firstSelectedCurrency = el.iso_code;
                         }
                     });
                     this.currencies.forEach(el => {
                         if(el.id == this.currencyPair.second_currency_id){
-                            this.secondSelectedCurrency = el.iso_code
+                            this.secondSelectedCurrency = el.iso_code;
                         }
                     });
                 });
             },
             async updateCurrencyPair(){
                 this.errors = [];
-                this.currency_pairs.forEach(element => {
-                    if(element.firstCurrencyId == this.firstCurrencyId && element.secondCurrencyId == this.secondCurrencyId
-                     ||
-                     element.firstCurrencyId == this.secondCurrencyId && element.secondCurrencyId == this.firstCurrencyId){
+                this.currencyPairs.forEach(element => {
+                    if(element.first_currency_id == this.firstCurrencyId && element.second_currency_id == this.secondCurrencyId
+                    ||
+                    element.first_currency_id == this.secondCurrencyId && element.second_currency_id == this.firstCurrencyId){
                         this.errors.push("Paire de devises déjà existante")
                     }
                 });
@@ -158,12 +163,16 @@
                     formData.append('secondCurrencyId', this.secondCurrencyId);
                     formData.append('conversionRate', this.conversionRate);
                     console.log(formData);
-                    let url = 'http://127.0.0.1:8000/api/save_currency_pair';
+                    let url = `http://127.0.0.1:8000/api/updateCurrencyPair/${this.$route.params.id}`;
                     await axios.post(url, formData).then((response) =>{
                         console.log(response);
                         if(response.status == 200){
                             alert(response.data.message);
+                        } else{
+                            console.log('error');
                         }
+                    }).catch(error =>{
+                        this.errors.push(error.response);
                     });
                 }
             }
