@@ -77,6 +77,7 @@
             }
         },        
         created(){
+            this.getCurrencyPairs();
             this.getCurrencies();
         },
         methods:{
@@ -92,6 +93,15 @@
                 console.log(event.target.value);
                 this.convertedCurrency = 1/event.target.value;
             },
+            async getCurrencyPairs(){
+                let url = 'http://127.0.0.1:8000/api/currency_pairs'
+                await axios.get(url).then(response =>{
+                    this.currency_pairs = response.data;
+                    console.log(this.currency_pairs);
+                }).catch(error =>{
+                    console.log(error);
+                });
+            },
             async getCurrencies(){
                 let url = 'http://127.0.0.1:8000/api/currencies'
                 await axios.get(url).then(response =>{
@@ -103,6 +113,13 @@
             },
             async saveCurrencyPair(){
                 this.errors = [];
+                this.currency_pairs.forEach(element => {
+                    if(element.first_currency_id == this.first_currency_id && element.second_currency_id == this.second_currency_id
+                     ||
+                     element.first_currency_id == this.second_currency_id && element.second_currency_id == this.first_currency_id){
+                        this.errors.push("Paire de devises déjà existante")
+                    }
+                });
                 if(!this.first_currency_id || !this.second_currency_id){
                     this.errors.push("Veuillez sélectionner 2 devises")
                 }
