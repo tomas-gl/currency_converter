@@ -1,6 +1,8 @@
 <template>
-  <Header title="TITRE" />
-  <router-view></router-view>
+  <div>
+    <Header title="Currency Converter" />
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>

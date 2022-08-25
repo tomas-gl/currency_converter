@@ -1,7 +1,7 @@
-import CurrencyPairsList from '../components/CurrencyPairsList';
-import AddCurrencyPair from '../components/AddCurrencyPair';
-import EditCurrencyPair from '../components/EditCurrencyPair';
-import AddCurrency from '../components/AddCurrency';
+import CurrencyPairsList from '../components/administration/CurrencyPairsList';
+import AddCurrencyPair from '../components/administration/AddCurrencyPair';
+import EditCurrencyPair from '../components/administration/EditCurrencyPair';
+import AddCurrency from '../components/administration/AddCurrency';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
