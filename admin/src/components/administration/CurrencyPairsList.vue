@@ -18,7 +18,7 @@
                     /
                     {{ currencyPair.second_currency_iso_code }} -> {{ currencyPair.first_currency_iso_code }}
                 </td>
-                <td>{{ currencyPair.conversion_rate }} / {{ 1/currencyPair.conversion_rate }}</td>
+                <td>{{ currencyPair.conversion_rate }} / {{ currencyPair.convertedCurrency }}</td>
                 <td><router-link :to="{ name:'EditCurrencyPair', params: { id: currencyPair.id} }" type="button" class="btn btn-primary">Modifier</router-link></td>
                 <td><button type="button" class="btn btn-danger" @click.prevent="deleteCurrencyPair(currencyPair.id)">Supprimer</button></td>
             </tr>
@@ -45,6 +45,7 @@
         data(){
             return{
                 currencyPairs:Array,
+                convertedCurrency: '',
                 currencyPairDeleted: false,
             }
         },
@@ -56,6 +57,9 @@
                 let url = 'http://127.0.0.1:8000/api/currencyPairs'
                 await axios.get(url).then(response =>{
                     this.currencyPairs = response.data;
+                    this.currencyPairs.forEach(element => {
+                        element.convertedCurrency = parseFloat(1/element.conversion_rate).toFixed(2);
+                    });
                     console.log(this.currencyPairs);
                 }).catch(error =>{
                     console.log(error);

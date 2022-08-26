@@ -92,7 +92,7 @@
             },
             convertCurrency(event){
                 console.log(event.target.value);
-                this.convertedCurrency = 1/event.target.value;
+                this.convertedCurrency = parseFloat(1/event.target.value).toFixed(2);
             },
             async getCurrencyPairs(){
                 let url = 'http://127.0.0.1:8000/api/currencyPairs'
@@ -126,8 +126,7 @@
                     this.firstCurrencyId = this.currencyPair.first_currency_id;
                     this.secondCurrencyId = this.currencyPair.second_currency_id;
                     this.conversionRate = this.currencyPair.conversion_rate;
-                    this.convertedCurrency = 1/this.currencyPair.conversion_rate;
-                    console.log(this.currencies);
+                    this.convertedCurrency = parseFloat(1/this.currencyPair.conversion_rate).toFixed(2);
                     this.currencies.forEach(el => {
                         if(el.id == this.currencyPair.first_currency_id){
                             this.firstSelectedCurrency = el.iso_code;

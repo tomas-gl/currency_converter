@@ -91,7 +91,7 @@
             },
             convertCurrency(event){
                 console.log(event.target.value);
-                this.convertedCurrency = 1/event.target.value;
+                this.convertedCurrency = parseFloat(1/event.target.value).toFixed(2);
             },
             async getCurrencyPairs(){
                 let url = 'http://127.0.0.1:8000/api/currencyPairs'
