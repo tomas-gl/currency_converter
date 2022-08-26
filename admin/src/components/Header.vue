@@ -13,6 +13,9 @@
                         <span class="visually-hidden">(current)</span>
                     </router-link>
                 </li>
+                <li>
+                    {{ currentRouteName }}
+                </li>
                 <li class="nav-item">
                     <router-link class="nav-link" to="/add_currency_pair">Ajouter une paire de devises</router-link>
                 </li>
@@ -30,6 +33,17 @@ export default{
     name:"Header",
     props:{
         title: String
+    },
+    methods:{
+        adminOrapi(){
+            this.currentRouteName()
+            console.log( this.$route.name);
+        }
+    },
+    computed: {
+        currentRouteName() {
+            return this.$route.name;
+        },
     }
 }
 </script>

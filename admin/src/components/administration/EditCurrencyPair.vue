@@ -120,7 +120,6 @@
             async getCurrencyPairById(){ 
                 let url = `http://127.0.0.1:8000/api/getCurrencyPair/${this.$route.params.id}`;
                 await axios.get(url).then(response =>{
-                    this.getCurrencies();
                     console.log(response);
                     this.currencyPair = response.data;
                     this.firstCurrencyId = this.currencyPair.first_currency_id;
