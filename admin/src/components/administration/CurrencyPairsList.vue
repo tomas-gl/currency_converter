@@ -46,7 +46,7 @@
             return{
                 currencyPairs:[],
                 convertedCurrency: '',
-                currencyPairDeleted: false,
+                currencyPairDeleted: false
             }
         },
         created(){

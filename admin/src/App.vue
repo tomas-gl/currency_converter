@@ -6,17 +6,22 @@
 </template>
 
 <script>
-import Header from './components/Header.vue'
+  import Header from './components/Header.vue';
+
 
 export default {
   name: 'App',
+  data(){
+    return{
+      user: null
+    }
+  },
+  mounted(){
+  },
   components: {
     Header
   },
-      computed: {
-        currentRouteName() {
-            return this.$route.name;
-        },
+    methods: {
     }
 }
 </script>

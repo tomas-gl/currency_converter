@@ -9,6 +9,7 @@ import Home from '../components/api/Home';
 import Status from '../components/api/Status';
 import CurrencyPairsSupported from '../components/api/CurrencyPairsSupported';
 import { createRouter, createWebHistory } from 'vue-router';
+// import axios from 'axios';
 
 const routes = [
     {
@@ -19,7 +20,7 @@ const routes = [
     {
         name: 'AdminCurrencyPairsList',
         path: '/admin',
-        component: CurrencyPairsList
+        component: CurrencyPairsList,
     },
     {
         name: 'AdminAddCurrencyPair',
@@ -58,8 +59,12 @@ const routes = [
     },
     {
         path: '/:catchAll(.*)',
-        redirect: "/admin",
-      }
+        redirect: "/api",
+    },
+    {
+        path: '/',
+        redirect: "/login",
+    }
 ]
 
 const router = createRouter({

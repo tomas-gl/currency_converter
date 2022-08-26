@@ -20,22 +20,31 @@ use Illuminate\Support\Facades\Route;
 
 // Route::resource('conversion', App\Http\Controllers\ConversionAdminController::class)->only(['index','store','show','update','destroy']);
 
-Route::get('getServerStatus',[App\Http\Controllers\CurrencyController::class, 'getServerStatus']);
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+Route::middleware('auth:sanctum')->get('/authenticated', function () {
+    return true;
+});
 
-Route::get('getCurrencyPairs',[App\Http\Controllers\CurrencyController::class, 'getCurrencyPairsList']);
+Route::post('login',[App\Http\Controllers\CurrencyConverterController::class, 'login']);
 
-Route::get('getCurrencies',[App\Http\Controllers\CurrencyController::class, 'getCurrencies']);
+Route::get('getServerStatus',[App\Http\Controllers\CurrencyConverterController::class, 'getServerStatus']);
 
-Route::post('saveCurrencyPair',[App\Http\Controllers\CurrencyController::class, 'saveCurrencyPair']);
+Route::get('getCurrencyPairs',[App\Http\Controllers\CurrencyConverterController::class, 'getCurrencyPairsList']);
 
-Route::post('saveCurrency',[App\Http\Controllers\CurrencyController::class, 'saveCurrency']);
+Route::get('getCurrencies',[App\Http\Controllers\CurrencyConverterController::class, 'getCurrencies']);
 
-Route::delete('deleteCurrencyPair/{id}',[App\Http\Controllers\CurrencyController::class, 'deleteCurrencyPair']);
+Route::post('saveCurrencyPair',[App\Http\Controllers\CurrencyConverterController::class, 'saveCurrencyPair']);
 
-Route::get('getCurrencyPair/{id}',[App\Http\Controllers\CurrencyController::class, 'getCurrencyPair']);
+Route::post('saveCurrency',[App\Http\Controllers\CurrencyConverterController::class, 'saveCurrency']);
 
-Route::post('updateCurrencyPair/{id}',[App\Http\Controllers\CurrencyController::class, 'updateCurrencyPair']);
+Route::delete('deleteCurrencyPair/{id}',[App\Http\Controllers\CurrencyConverterController::class, 'deleteCurrencyPair']);
 
-Route::post('updateCurrencyPairCount/{id}',[App\Http\Controllers\CurrencyController::class, 'updateCurrencyPairCount']);
+Route::get('getCurrencyPair/{id}',[App\Http\Controllers\CurrencyConverterController::class, 'getCurrencyPair']);
+
+Route::post('updateCurrencyPair/{id}',[App\Http\Controllers\CurrencyConverterController::class, 'updateCurrencyPair']);
+
+Route::post('updateCurrencyPairCount/{id}',[App\Http\Controllers\CurrencyConverterController::class, 'updateCurrencyPairCount']);
 
 // Route::get('currency_pairs', 'CurrencyPairsAdminController@index');

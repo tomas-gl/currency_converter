@@ -3,11 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 use App\Models\CurrencyPair;
 use App\Models\Currency;
+use App\Models\User;
 
-class CurrencyController extends Controller
+class CurrencyConverterController extends Controller
 {
+
+    public function login(Request $request){
+
+        if(Auth::attempt($request->only('email', 'password'))){
+            return response()->json(['auth_user' => Auth::user(), 200]);
+        }
+
+        throw ValidationException::withMessages([
+            'email' => ['L\'adresse mail ou le mot de passe sont incorrects']
+        ]);
+    }
 
     public function getServerStatus()
     {
