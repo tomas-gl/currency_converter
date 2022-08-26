@@ -8,18 +8,27 @@ use App\Models\Currency;
 
 class CurrencyController extends Controller
 {
+
+    public function getServerStatus()
+    {
+        $status = "Service en marche";
+        return response()->json($status);
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function currencyPairsList()
+    public function getCurrencyPairsList()
     {
         $currencyPairs = CurrencyPair::all();
         foreach($currencyPairs as $key=>$currencyPair){
             if($currencyPair->first_currency_id && $currencyPair->second_currency_id)
             $currencyPair['first_currency_iso_code'] = Currency::where("id", $currencyPair->first_currency_id)->first()->iso_code; 
             $currencyPair['second_currency_iso_code'] = Currency::where("id", $currencyPair->second_currency_id)->first()->iso_code; 
+            $currencyPair['first_currency_name'] = Currency::where("id", $currencyPair->first_currency_id)->first()->currency_name; 
+            $currencyPair['second_currency_name'] = Currency::where("id", $currencyPair->second_currency_id)->first()->currency_name; 
             // $data['products'][$key]['categorie'] = Category::where("id", $product->category_id)->first()->name; 
         }
         return response()->json($currencyPairs);

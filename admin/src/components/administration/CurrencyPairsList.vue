@@ -14,9 +14,9 @@
             <tr class="table-secondary">
                 <th scope="row">{{ currencyPair.id }}</th>
                 <td>
-                    {{ currencyPair.first_currency_iso_code }} -> {{ currencyPair.second_currency_iso_code }}
-                    / 
-                    {{ currencyPair.second_currency_iso_code }} -> {{ currencyPair.first_currency_iso_code }}
+                    {{ currencyPair.first_currency_name}} ({{ currencyPair.first_currency_iso_code }}) 
+                    &#8660; 
+                    {{ currencyPair.second_currency_name}} ({{ currencyPair.second_currency_iso_code }})
                 </td>
                 <td>{{ currencyPair.conversion_rate }} / {{ currencyPair.convertedCurrency }}</td>
                 <td><router-link :to="{ name:'AdminEditCurrencyPair', params: { id: currencyPair.id} }" type="button" class="btn btn-primary">Modifier</router-link></td>
@@ -54,7 +54,7 @@
         },
         methods:{
             async getCurrencyPairs(){
-                let url = 'http://127.0.0.1:8000/api/currencyPairs'
+                let url = 'http://127.0.0.1:8000/api/getCurrencyPairs'
                 await axios.get(url).then(response =>{
                     this.currencyPairs = response.data;
                     this.currencyPairs.forEach(element => {

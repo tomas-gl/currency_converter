@@ -46,7 +46,7 @@
         },
         methods:{
             async getCurrencies(){
-                let url = 'http://127.0.0.1:8000/api/currencies'
+                let url = 'http://127.0.0.1:8000/api/getCurrencies'
                 await axios.get(url).then(response =>{
                     this.currencies = response.data;
                     console.log(this.currencies);

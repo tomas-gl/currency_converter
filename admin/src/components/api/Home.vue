@@ -2,7 +2,6 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-12 offset-md-3 col-md-6">
-                <!-- <span>{{this.selectedCurrencyExiste}}</span> -->
                 <form novalidate class="p-3">
                     <div class="row">
                         <span class="fs-3 d-block mb-5 text-center">Convertir une devise</span>
@@ -50,7 +49,6 @@
                 </form>
             </div>
         </div>
-            <!-- <h1>zaeazeazezaeza</h1> -->
     </div>
 </template>
 
@@ -58,7 +56,7 @@
     import axios from 'axios';
 
     export default {
-        name: 'ApiCurrency',
+        name: 'ApiHome',
         data(){
             return {
                 currencyPairs:[],
@@ -124,25 +122,21 @@
                 if(!this.selectedCurrencyExiste){
                     this.errors.push("Paire de devises non supportées");
                 }
-                console.log(this.revertedConversion);
-                console.log(this.firstConversionRate, this.secondConversionRate);
             },
             convertCurrency(event){
                 if(event.target.id == "firstConverion"){
                     this.firstConversion = event.target.value;
                     this.secondConversion = event.target.value * this.firstConversionRate;
                     this.secondConversion = parseFloat(this.secondConversion).toFixed(2);
-                    console.log(this.firstConverion);
                 }
                 else if(event.target.id == "secondConverion"){
                     this.secondConversion = event.target.value;
                     this.firstConversion = event.target.value * this.secondConversionRate;
                     this.firstConversion = parseFloat(this.firstConversion).toFixed(2);
-                    console.log(this.secondConversion);
                 }
             },
             async getCurrencyPairs(){
-                let url = 'http://127.0.0.1:8000/api/currencyPairs'
+                let url = 'http://127.0.0.1:8000/api/getCurrencyPairs'
                 await axios.get(url).then(response =>{
                     this.currencyPairs = response.data;
                     this.currencyPairs.forEach(element => {
@@ -154,7 +148,7 @@
                 });
             },
             async getCurrencies(){
-                let url = 'http://127.0.0.1:8000/api/currencies'
+                let url = 'http://127.0.0.1:8000/api/getCurrencies'
                 await axios.get(url).then(response =>{
                     this.currencies = response.data;
                     this.selectedCurrencyPairs = [this.currencies[0].iso_code, this.currencies[0].iso_code];

@@ -20,9 +20,11 @@ use Illuminate\Support\Facades\Route;
 
 // Route::resource('conversion', App\Http\Controllers\ConversionAdminController::class)->only(['index','store','show','update','destroy']);
 
-Route::get('currencyPairs',[App\Http\Controllers\CurrencyController::class, 'currencyPairsList']);
+Route::get('getServerStatus',[App\Http\Controllers\CurrencyController::class, 'getServerStatus']);
 
-Route::get('currencies',[App\Http\Controllers\CurrencyController::class, 'getCurrencies']);
+Route::get('getCurrencyPairs',[App\Http\Controllers\CurrencyController::class, 'getCurrencyPairsList']);
+
+Route::get('getCurrencies',[App\Http\Controllers\CurrencyController::class, 'getCurrencies']);
 
 Route::post('saveCurrencyPair',[App\Http\Controllers\CurrencyController::class, 'saveCurrencyPair']);
 

@@ -32,10 +32,10 @@
                         </router-link>
                     </li>
                     <li class="nav-item mx-2">
-                        <router-link class="nav-link rounded" to="/api">Paires de devises supportées</router-link>
+                        <router-link class="nav-link rounded" to="/api/currency_pairs">Paires de devises supportées</router-link>
                     </li>
                     <li class="nav-item mx-2">
-                        <router-link class="nav-link rounded" to="/api">État du serveur</router-link>
+                        <router-link class="nav-link rounded" to="/api/status">État du serveur</router-link>
                     </li>
                 </ul>
             </div>

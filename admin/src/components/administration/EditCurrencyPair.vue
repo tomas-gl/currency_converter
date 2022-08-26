@@ -95,7 +95,7 @@
                 this.convertedCurrency = parseFloat(1/event.target.value).toFixed(2);
             },
             async getCurrencyPairs(){
-                let url = 'http://127.0.0.1:8000/api/currencyPairs'
+                let url = 'http://127.0.0.1:8000/api/getCurrencyPairs'
                 await axios.get(url).then(response =>{
                     this.currencyPairs = response.data;
                     for(var i = 0; i < this.currencyPairs.length; i++){
@@ -109,7 +109,7 @@
                 });
             },
             async getCurrencies(){
-                let url = 'http://127.0.0.1:8000/api/currencies'
+                let url = 'http://127.0.0.1:8000/api/getCurrencies'
                 await axios.get(url).then(response =>{
                     this.currencies = response.data;
                     console.log(this.currencies);
