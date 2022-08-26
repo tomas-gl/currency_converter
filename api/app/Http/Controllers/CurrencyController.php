@@ -148,4 +148,22 @@ class CurrencyController extends Controller
             ]);
         }
     }
+
+        /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateCurrencyPairCount(Request $request, $id)
+    {
+        $currencyPair = CurrencyPair::where('id', $id)->first();
+        $currencyPair->conversion_request = $request->conversionRequest;
+        $currencyPair->save();
+        return response()->json([
+            'message' => 'Nombre de requête pour la paire de devises mise à jour !',
+            'code' => 200
+        ]);
+    }
 }

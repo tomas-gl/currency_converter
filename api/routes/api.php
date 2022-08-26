@@ -36,4 +36,6 @@ Route::get('getCurrencyPair/{id}',[App\Http\Controllers\CurrencyController::clas
 
 Route::post('updateCurrencyPair/{id}',[App\Http\Controllers\CurrencyController::class, 'updateCurrencyPair']);
 
+Route::post('updateCurrencyPairCount/{id}',[App\Http\Controllers\CurrencyController::class, 'updateCurrencyPairCount']);
+
 // Route::get('currency_pairs', 'CurrencyPairsAdminController@index');

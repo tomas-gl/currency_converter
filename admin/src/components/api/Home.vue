@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-12 offset-md-3 col-md-6">
-                <form novalidate class="p-3">
+                <form @submit.prevent="updateCurrencyPairCount" novalidate class="p-3">
                     <div class="row">
                         <span class="fs-3 d-block mb-5 text-center">Convertir une devise</span>
                         <div class="mb-3 col-12 col-md-6">
@@ -46,6 +46,8 @@
                                     :value="secondConversion" @change="convertCurrency($event)">
                         </div>
                     </div>
+
+                    <!-- <button type="submit" class="btn btn-primary w-auto mx-auto">Modifier</button> -->
                 </form>
             </div>
         </div>
@@ -62,6 +64,7 @@
                 currencyPairs:[],
                 currencies: [],
                 selectedCurrencyPairs: [],
+                selectedCurrencyPair: '',
                 selectedCurrencyExiste: false,
                 firstSelectedCurrency: '',
                 secondSelectedCurrency: '',
@@ -77,6 +80,7 @@
         created(){
             this.getCurrencyPairs();
             this.getCurrencies();
+            this.updateCurrencyPairCount();
         },
         methods:{
             getSelectedCurrency(event){
@@ -102,7 +106,10 @@
                         ||
                         el.second_currency_iso_code == this.selectedCurrencyPairs[0] && el.first_currency_iso_code == this.selectedCurrencyPairs[1]
                     ){
+                        this.selectedCurrencyPair = el;
                         this.selectedCurrencyExiste = true;
+                        this.selectedCurrencyPair.conversion_request++;
+                        console.log(this.selectedCurrencyPair);
                         if(el.first_currency_iso_code == this.selectedCurrencyPairs[0] && el.second_currency_iso_code == this.selectedCurrencyPairs[1]){
                             this.firstConversionRate = el.conversion_rate;
                             this.secondConversionRate = parseFloat(1/el.conversion_rate).toFixed(2);
@@ -122,6 +129,7 @@
                 if(!this.selectedCurrencyExiste){
                     this.errors.push("Paire de devises non supportées");
                 }
+                this.updateCurrencyPairCount();
             },
             convertCurrency(event){
                 if(event.target.id == "firstConverion"){
@@ -160,6 +168,23 @@
                     console.log(error);
                 });
             },
+            async updateCurrencyPairCount(){
+                if(!this.errors.length && this.firstSelection){
+                    let formData = new FormData();
+                    formData.append('conversionRequest', this.selectedCurrencyPair.conversion_request);
+                    let url = `http://127.0.0.1:8000/api/updateCurrencyPairCount/${this.selectedCurrencyPair.id}`;
+                    await axios.post(url, formData).then((response) =>{
+                        console.log(response);
+                        if(response.status == 200){
+                            console.log(response.data.message);
+                        } else{
+                            console.log('error');
+                        }
+                    }).catch(error =>{
+                        this.errors.push(error.response);
+                    });
+                }
+            }
         },
     }
 </script>
