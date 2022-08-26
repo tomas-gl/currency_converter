@@ -25,7 +25,7 @@
         </tbody>
     </table>
 
-    <div class="toast fade show position-fixed bottom-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true" v-if="currencyPairDeleted == true">
+    <div class="toast fade show position-fixed bottom-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true" v-if="currencyPairDeleted">
         <div class="toast-header">
             <strong class="me-auto">Message de confirmation</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -66,10 +66,11 @@
                 });
             },
             async deleteCurrencyPair(id){
+                this.currencyPairDeleted = false;
                 let url = `http://127.0.0.1:8000/api/deleteCurrencyPair/${id}`;
                 await axios.delete(url).then(response =>{
                     if(response.data.code == 200){
-                        // alert(response.data.message);
+                        console.log(response.data.message);
                         this.currencyPairDeleted = true;
                         this.getCurrencyPairs();
                     }
@@ -79,7 +80,6 @@
             }
         },
         mounted(){
-            // console.log('currency pairs mounted')
         }
     }
 </script>

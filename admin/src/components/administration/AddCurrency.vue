@@ -25,6 +25,15 @@
             </form>
         </div>
     </div>
+    <div class="toast fade show position-fixed bottom-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true" v-if="currencyAdded">
+        <div class="toast-header">
+            <strong class="me-auto">Message de confirmation</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Devise ajoutée !
+        </div>
+    </div>
 </div>
 </template>
 
@@ -38,6 +47,7 @@
                 currencyName: '',
                 isoCode: '',
                 currencies: {},
+                currencyAdded: false,
                 errors: [],
             }
         },        
@@ -77,6 +87,7 @@
                 }
 
                 if(!this.errors.length){
+                    this.currencyAdded = false;
                     let formData = new FormData();
                     formData.append('currencyName', this.currencyName);
                     formData.append('isoCode', this.isoCode.toUpperCase());
@@ -85,8 +96,9 @@
                     await axios.post(url, formData).then((response) =>{
                         console.log(response);
                         if(response.status == 200){
-                            alert(response.data.message);
+                            console.log(response.data.message);
                         }
+                    this.currencyAdded = true;
                     this.currencyName = '';
                     this.isoCode = '';
                     });

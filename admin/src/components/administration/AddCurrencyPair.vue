@@ -22,7 +22,7 @@
                         <input disabled class="form-control" placeholder="Taux de conversion" value="1">
                     </div>
                     <div class="mb-3 col-12 col-md-2 text-center">
-                        <span class="fs-1">-></span>
+                        <span class="fs-1">&#8594;</span>
                     </div>
                     <div class="mb-3 col-12 col-md-5">
                         <label>{{ secondSelectedCurrency }}</label>
@@ -36,7 +36,7 @@
                         <input disabled class="form-control" placeholder="Taux de conversion" value="1">
                     </div>
                     <div class="mb-3 col-12 col-md-2 text-center">
-                        <span class="fs-1">-></span>
+                        <span class="fs-1">&#8594;</span>
                     </div>
                     <div class="mb-3 col-12 col-md-5">
                         <label>{{ firstSelectedCurrency }}</label>
@@ -53,6 +53,15 @@
                    
                     <button type="submit" class="btn btn-primary w-auto mx-auto">Créer</button>
                 </form>
+            </div>
+        </div>
+        <div class="toast fade show position-fixed bottom-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true" v-if="currencyPairAdded">
+            <div class="toast-header">
+                <strong class="me-auto">Message de confirmation</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Paire de devises ajoutée !
             </div>
         </div>
     </div>
@@ -73,6 +82,7 @@
                 firstCurrencyId: '',
                 secondCurrencyId: '',
                 conversionRate: '',
+                currencyPairAdded: false,
                 errors: [],
             }
         },        
@@ -131,6 +141,7 @@
                 }
 
                 if(!this.errors.length){
+                    this.currencyPairAdded = false;
                     let formData = new FormData();
                     formData.append('firstCurrencyId', this.firstCurrencyId);
                     formData.append('secondCurrencyId', this.secondCurrencyId);
@@ -140,8 +151,9 @@
                     await axios.post(url, formData).then((response) =>{
                         console.log(response);
                         if(response.status == 200){
-                            alert(response.data.message);
+                            console.log(response.data.message);
                         }
+                    this.currencyPairAdded = true;
                     this.firstCurrencyId = '';
                     this.secondCurrencyId = '';
                     this.firstSelectedCurrency = '';

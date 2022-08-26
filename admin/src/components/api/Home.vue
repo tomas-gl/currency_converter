@@ -36,7 +36,7 @@
                                     :value="firstConversion" @change="convertCurrency($event)">
                         </div>
                         <div class="mb-3 col-12 col-md-2 text-center">
-                            <span class="fs-1">&#8660;</span>
+                            <span class="fs-1">&#8596;</span>
                         </div>
                         <div class="mb-3 col-12 col-md-5">
                             <label>{{ secondSelectedCurrency }}</label>
