@@ -68,7 +68,7 @@
                 firstSelectedCurrency: '',
                 secondSelectedCurrency: '',
                 convertedCurrency: '',
-                currencies:Array,
+                currencies: [],
                 currencyPair: {},
                 firstCurrencyId: '',
                 secondCurrencyId: '',
@@ -117,15 +117,17 @@
                     console.log(error);
                 });
             },
-            async getCurrencyPairById(){
+            async getCurrencyPairById(){ 
                 let url = `http://127.0.0.1:8000/api/getCurrencyPair/${this.$route.params.id}`;
                 await axios.get(url).then(response =>{
+                    this.getCurrencies();
                     console.log(response);
                     this.currencyPair = response.data;
                     this.firstCurrencyId = this.currencyPair.first_currency_id;
                     this.secondCurrencyId = this.currencyPair.second_currency_id;
                     this.conversionRate = this.currencyPair.conversion_rate;
                     this.convertedCurrency = 1/this.currencyPair.conversion_rate;
+                    console.log(this.currencies);
                     this.currencies.forEach(el => {
                         if(el.id == this.currencyPair.first_currency_id){
                             this.firstSelectedCurrency = el.iso_code;
