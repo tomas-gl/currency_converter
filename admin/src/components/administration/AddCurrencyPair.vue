@@ -142,6 +142,12 @@
                         if(response.status == 200){
                             alert(response.data.message);
                         }
+                    this.firstCurrencyId = '';
+                    this.secondCurrencyId = '';
+                    this.firstSelectedCurrency = '';
+                    this.secondSelectedCurrency = '';
+                    this.conversionRate = '';
+                    this.convertedCurrency = '';
                     });
                     this.getCurrencyPairs();
                 }
