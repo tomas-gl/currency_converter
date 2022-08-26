@@ -62,6 +62,18 @@ class CurrencyPairsAdminController extends Controller
         ]);
     }
 
+    public function saveCurrency(Request $request)
+    {
+        $currency = new Currency();
+        $currency->currency_name = $request->currencyName;
+        $currency->iso_code = $request->isoCode;
+        $currency->save();
+        return response()->json([
+            'message' => 'Devise créé !',
+            'code' => 200
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *

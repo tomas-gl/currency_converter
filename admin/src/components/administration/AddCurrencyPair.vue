@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-12 offset-md-3 col-md-6">
-                <form @submit.prevent="saveCurrencyPair" novalidate class="row p-5 border rounded">
-
+                <form @submit.prevent="saveCurrencyPair" novalidate class="row p-3 border rounded">
+                    <span class="fs-3 d-block mb-5">Ajouter une paire de devises</span>
                     <div class="mb-3 col-12 col-md-6">
                         <label for="exampleFormControlSelect1">Première devise</label>
                             <select class="form-control" v-model="firstCurrencyId" @change="getFirstSelectedCurrency($event)">
