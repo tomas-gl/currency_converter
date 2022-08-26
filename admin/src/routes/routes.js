@@ -2,9 +2,9 @@ import CurrencyPairsList from '../components/administration/CurrencyPairsList';
 import AddCurrencyPair from '../components/administration/AddCurrencyPair';
 import EditCurrencyPair from '../components/administration/EditCurrencyPair';
 import AddCurrency from '../components/administration/AddCurrency';
-import Api from '../components/api/Api';
-import ApiStatus from '../components/api/ApiStatus';
-import ApiCurrencyPairs from '../components/api/ApiCurrencyPairs';
+import Home from '../components/api/Home';
+import Status from '../components/api/Status';
+import CurrencyPairsAvailable from '../components/api/CurrencyPairsAvailable';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
@@ -29,19 +29,19 @@ const routes = [
         component: AddCurrency
     },
     {
-        name: 'Api',
+        name: 'ApiHome',
         path: '/api',
-        component: Api,
+        component: Home,
     },
     {
-        name: 'ApiCurrencyPairs',
+        name: 'ApiCurrencyPairsAvailable',
         path: '/api/currency_pairs',
-        component: ApiCurrencyPairs,
+        component: CurrencyPairsAvailable,
     },
     {
         name: 'ApiStatus',
         path: '/api/status',
-        component: ApiStatus,
+        component: Status,
     }
 ]
 

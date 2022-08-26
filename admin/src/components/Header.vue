@@ -7,14 +7,27 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav me-auto">
+            <div>
+                {{ currentRouteName }}
+            </div>
+             <!-- <ul class="navbar-nav me-auto" v-if="currentRouteName == "ApiHome" ">
                 <li class="nav-item">
                     <router-link class="nav-link active" to="/">Home
                         <span class="visually-hidden">(current)</span>
                     </router-link>
                 </li>
-                <li>
-                    {{ currentRouteName }}
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/add_currency_pair">Ajouter une paire de devises</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/add_currency">Ajouter une devise</router-link>
+                </li>
+            </ul> -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <router-link class="nav-link active" to="/">Home
+                        <span class="visually-hidden">(current)</span>
+                    </router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link" to="/add_currency_pair">Ajouter une paire de devises</router-link>
@@ -36,7 +49,7 @@ export default{
     },
     methods:{
         adminOrapi(){
-            this.currentRouteName()
+            this.currentRouteName();
             console.log( this.$route.name);
         }
     },
