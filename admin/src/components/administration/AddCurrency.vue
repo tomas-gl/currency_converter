@@ -43,7 +43,6 @@
         },        
         created(){
             this.getCurrencies();
-            // this.isLetterOrNumber();
         },
         methods:{
             async getCurrencies(){
@@ -80,7 +79,7 @@
                 if(!this.errors.length){
                     let formData = new FormData();
                     formData.append('currencyName', this.currencyName);
-                    formData.append('isoCode', this.isoCode);
+                    formData.append('isoCode', this.isoCode.toUpperCase());
                     console.log(formData);
                     let url = 'http://127.0.0.1:8000/api/saveCurrency';
                     await axios.post(url, formData).then((response) =>{

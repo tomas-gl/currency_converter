@@ -20,19 +20,18 @@ use Illuminate\Support\Facades\Route;
 
 // Route::resource('conversion', App\Http\Controllers\ConversionAdminController::class)->only(['index','store','show','update','destroy']);
 
-Route::get('currencyPairs',[App\Http\Controllers\CurrencyPairsAdminController::class, 'currencyPairsList']);
+Route::get('currencyPairs',[App\Http\Controllers\CurrencyController::class, 'currencyPairsList']);
 
+Route::get('currencies',[App\Http\Controllers\CurrencyController::class, 'getCurrencies']);
 
-Route::get('currencies',[App\Http\Controllers\CurrencyPairsAdminController::class, 'getCurrencies']);
+Route::post('saveCurrencyPair',[App\Http\Controllers\CurrencyController::class, 'saveCurrencyPair']);
 
-Route::post('saveCurrencyPair',[App\Http\Controllers\CurrencyPairsAdminController::class, 'saveCurrencyPair']);
+Route::post('saveCurrency',[App\Http\Controllers\CurrencyController::class, 'saveCurrency']);
 
-Route::post('saveCurrency',[App\Http\Controllers\CurrencyPairsAdminController::class, 'saveCurrency']);
+Route::delete('deleteCurrencyPair/{id}',[App\Http\Controllers\CurrencyController::class, 'deleteCurrencyPair']);
 
-Route::delete('deleteCurrencyPair/{id}',[App\Http\Controllers\CurrencyPairsAdminController::class, 'deleteCurrencyPair']);
+Route::get('getCurrencyPair/{id}',[App\Http\Controllers\CurrencyController::class, 'getCurrencyPair']);
 
-Route::get('getCurrencyPair/{id}',[App\Http\Controllers\CurrencyPairsAdminController::class, 'getCurrencyPair']);
-
-Route::post('updateCurrencyPair/{id}',[App\Http\Controllers\CurrencyPairsAdminController::class, 'updateCurrencyPair']);
+Route::post('updateCurrencyPair/{id}',[App\Http\Controllers\CurrencyController::class, 'updateCurrencyPair']);
 
 // Route::get('currency_pairs', 'CurrencyPairsAdminController@index');

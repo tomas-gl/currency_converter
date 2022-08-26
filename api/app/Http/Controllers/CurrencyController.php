@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\CurrencyPair;
 use App\Models\Currency;
 
-class CurrencyPairsAdminController extends Controller
+class CurrencyController extends Controller
 {
     /**
      * Display a listing of the resource.

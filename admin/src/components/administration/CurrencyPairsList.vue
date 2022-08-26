@@ -44,7 +44,7 @@
         name: 'CurrencyPairsList',
         data(){
             return{
-                currencyPairs:Array,
+                currencyPairs:[],
                 convertedCurrency: '',
                 currencyPairDeleted: false,
             }
