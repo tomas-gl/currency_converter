@@ -3,6 +3,7 @@
     <div class="row mt-5">
         <div class="col-12 offset-md-3 col-md-6">
             <form @submit.prevent="saveCurrency" novalidate class="row p-3 border rounded">
+                <span class="fs-3 d-block mb-5 text-center">Ajouter une devise</span>
                 <div class="mb-3 col-9">
                     <label class="form-label">Nom de devise</label>
                     <input type="text" class="form-control" v-model="currencyName">

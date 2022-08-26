@@ -4,7 +4,7 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Paire de devises</th>
+                <th scope="col">Paires de devises</th>
                 <th scope="col">Taux de conversion (sur base 1)</th>
                 <th></th>
                 <th></th>

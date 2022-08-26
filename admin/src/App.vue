@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header title="Currency Converter" />
+    <Header :title="{ currentRouteName }" />
     <router-view></router-view>
   </div>
 </template>
@@ -12,7 +12,12 @@ export default {
   name: 'App',
   components: {
     Header
-  }
+  },
+      computed: {
+        currentRouteName() {
+            return this.$route.name;
+        },
+    }
 }
 </script>
 
