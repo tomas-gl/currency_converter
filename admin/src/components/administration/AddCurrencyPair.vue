@@ -1,44 +1,44 @@
 <template>
     <div class="container">
         <div class="row mt-5">
-            <div class="col-12 offset-md-3 col-md-6">
+            <div class="col-12 offset-lg-3 col-lg-6">
                 <form @submit.prevent="saveCurrencyPair" novalidate class="row p-3 border rounded">
                     <span class="fs-3 d-block mb-5 text-center">Ajouter une paire de devises</span>
-                    <div class="mb-3 col-12 col-md-6">
+                    <div class="mb-3 col-6">
                         <label for="exampleFormControlSelect1">Première devise</label>
                             <select class="form-control" v-model="firstCurrencyId" @change="getFirstSelectedCurrency($event)">
                                 <option v-for="currency in currencies" :key="currency.id" :value="currency.id">{{ currency.iso_code }}</option>
                             </select>
                     </div>
-                    <div class="mb-3 col-12 col-md-6">
+                    <div class="mb-3 col-6">
                         <label for="exampleFormControlSelect1">Seconde devise</label>
                             <select class="form-control" v-model="secondCurrencyId" @change="getSecondSelectedCurrency($event)">
                                 <option v-for="currency in currencies" :key="currency.id" :value="currency.id">{{ currency.iso_code }}</option>
                             </select>
                     </div>
 
-                    <div class="mb-3 col-12 col-md-5">
+                    <div class="mb-3 col-5">
                         <label>{{ firstSelectedCurrency }}</label>
                         <input disabled class="form-control" placeholder="Taux de conversion" value="1">
                     </div>
-                    <div class="mb-3 col-12 col-md-2 text-center">
+                    <div class="mb-3 col-2 text-center">
                         <span class="fs-1">&#8594;</span>
                     </div>
-                    <div class="mb-3 col-12 col-md-5">
+                    <div class="mb-3 col-5 ">
                         <label>{{ secondSelectedCurrency }}</label>
                         <input type="number" step=".01" min="0" class="form-control" placeholder="Taux de conversion" 
                                 v-model="conversionRate" 
                                 @change="convertCurrency($event)">
                     </div>
 
-                    <div class="mb-3 col-12 col-md-5">
+                    <div class="mb-3 col-5 ">
                         <label>{{ secondSelectedCurrency }}</label>
                         <input disabled class="form-control" placeholder="Taux de conversion" value="1">
                     </div>
-                    <div class="mb-3 col-12 col-md-2 text-center">
+                    <div class="mb-3 col-2 text-center">
                         <span class="fs-1">&#8594;</span>
                     </div>
-                    <div class="mb-3 col-12 col-md-5">
+                    <div class="mb-3 col-5">
                         <label>{{ firstSelectedCurrency }}</label>
                         <input disabled type="number" step=".01" min="0" class="form-control" placeholder="Taux de conversion" :value="convertedCurrency">
                     </div>

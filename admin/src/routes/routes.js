@@ -1,3 +1,4 @@
+import Login from '../components/Login';
 import CurrencyPairsList from '../components/administration/CurrencyPairsList';
 import AddCurrencyPair from '../components/administration/AddCurrencyPair';
 import EditCurrencyPair from '../components/administration/EditCurrencyPair';
@@ -10,6 +11,11 @@ import CurrencyPairsSupported from '../components/api/CurrencyPairsSupported';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
+    {
+        name: 'Login',
+        path: '/login',
+        component: Login
+    },
     {
         name: 'AdminCurrencyPairsList',
         path: '/admin',
