@@ -19,6 +19,9 @@
                     <li class="nav-item mx-2">
                         <router-link class="nav-link rounded" to="/admin/add_currency">Ajouter une devise</router-link>
                     </li>
+                    <li class="nav-item mx-2">
+                        <router-link class="nav-link rounded" to="/admin/currency_pair_request">Nombre de requête par paires de devises</router-link>
+                    </li>
                 </ul>
                 <span class="nav-item mx-2">
                     <router-link class="nav-link rounded" to="/api">Vers l'API</router-link>

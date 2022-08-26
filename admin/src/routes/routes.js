@@ -2,6 +2,8 @@ import CurrencyPairsList from '../components/administration/CurrencyPairsList';
 import AddCurrencyPair from '../components/administration/AddCurrencyPair';
 import EditCurrencyPair from '../components/administration/EditCurrencyPair';
 import AddCurrency from '../components/administration/AddCurrency';
+import CurrencyPairsRequest from '../components/administration/CurrencyPairsRequest';
+
 import Home from '../components/api/Home';
 import Status from '../components/api/Status';
 import CurrencyPairsSupported from '../components/api/CurrencyPairsSupported';
@@ -27,6 +29,11 @@ const routes = [
         name: 'AdminAddCurrency',
         path: '/admin/add_currency',
         component: AddCurrency
+    },
+    {
+        name: 'CurrencyPairsRequest',
+        path: '/admin/currency_pair_request',
+        component: CurrencyPairsRequest
     },
     {
         name: 'ApiHome',
