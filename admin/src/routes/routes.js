@@ -5,27 +5,28 @@ import AddCurrency from '../components/administration/AddCurrency';
 import Home from '../components/api/Home';
 import Status from '../components/api/Status';
 import CurrencyPairsAvailable from '../components/api/CurrencyPairsAvailable';
+// import NotFound from '../components/NotFound';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
     {
-        name: 'CurrencyPairsList',
-        path: '/',
+        name: 'AdminCurrencyPairsList',
+        path: '/admin',
         component: CurrencyPairsList
     },
     {
-        name: 'AddCurrencyPair',
-        path: '/add_currency_pair',
+        name: 'AdminAddCurrencyPair',
+        path: '/admin/add_currency_pair',
         component: AddCurrencyPair
     },
     {
-        name: 'EditCurrencyPair',
-        path: '/currency_pair/edit/:id?',
+        name: 'AdminEditCurrencyPair',
+        path: '/admin/currency_pair/edit/:id?',
         component: EditCurrencyPair
     },
     {
-        name: 'AddCurrency',
-        path: '/add_currency',
+        name: 'AdminAddCurrency',
+        path: '/admin/add_currency',
         component: AddCurrency
     },
     {
@@ -42,7 +43,11 @@ const routes = [
         name: 'ApiStatus',
         path: '/api/status',
         component: Status,
-    }
+    },
+    {
+        path: '/:catchAll(.*)',
+        redirect: "/admin",
+      }
 ]
 
 const router = createRouter({

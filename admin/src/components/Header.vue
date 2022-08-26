@@ -7,9 +7,9 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarColor01">
-            <div>
+            <!-- <div>
                 {{ currentRouteName }}
-            </div>
+            </div> -->
              <!-- <ul class="navbar-nav me-auto" v-if="currentRouteName == "ApiHome" ">
                 <li class="nav-item">
                     <router-link class="nav-link active" to="/">Home
@@ -25,15 +25,15 @@
             </ul> -->
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <router-link class="nav-link active" to="/">Home
+                    <router-link class="nav-link active" to="/admin">Home
                         <span class="visually-hidden">(current)</span>
                     </router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/add_currency_pair">Ajouter une paire de devises</router-link>
+                    <router-link class="nav-link" to="/admin/add_currency_pair">Ajouter une paire de devises</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/add_currency">Ajouter une devise</router-link>
+                    <router-link class="nav-link" to="/admin/add_currency">Ajouter une devise</router-link>
                 </li>
             </ul>
             </div>

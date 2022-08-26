@@ -15,11 +15,11 @@
                 <th scope="row">{{ currencyPair.id }}</th>
                 <td>
                     {{ currencyPair.first_currency_iso_code }} -> {{ currencyPair.second_currency_iso_code }}
-                    /
+                    / 
                     {{ currencyPair.second_currency_iso_code }} -> {{ currencyPair.first_currency_iso_code }}
                 </td>
                 <td>{{ currencyPair.conversion_rate }} / {{ currencyPair.convertedCurrency }}</td>
-                <td><router-link :to="{ name:'EditCurrencyPair', params: { id: currencyPair.id} }" type="button" class="btn btn-primary">Modifier</router-link></td>
+                <td><router-link :to="{ name:'AdminEditCurrencyPair', params: { id: currencyPair.id} }" type="button" class="btn btn-primary">Modifier</router-link></td>
                 <td><button type="button" class="btn btn-danger" @click.prevent="deleteCurrencyPair(currencyPair.id)">Supprimer</button></td>
             </tr>
         </tbody>
