@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('second_currency_id')->nullable();
             $table->foreign('second_currency_id')->references('id')->on('currencies')->onDelete('set null');
             $table->decimal('conversion_rate', $precision = 8, $scale = 2)->nullable();
+            $table->integer('conversion_request')->nullable();
             $table->timestamps();
         });
 
@@ -29,17 +30,20 @@ return new class extends Migration
                 [
                 'first_currency_id' => 1,
                 'second_currency_id' => 2,
-                'conversion_rate' => '1.5'
+                'conversion_rate' => '1.5',
+                'conversion_request' => 0
                 ],
                 [
                 'first_currency_id' => 3,
                 'second_currency_id' => 4,
-                'conversion_rate' => '3.6'
+                'conversion_rate' => '3.6',
+                'conversion_request' => 0
                 ],
                 [
                 'first_currency_id' => 6,
                 'second_currency_id' => 7,
-                'conversion_rate' => '4'
+                'conversion_rate' => '4',
+                'conversion_request' => 0
                 ],
             )
         );
