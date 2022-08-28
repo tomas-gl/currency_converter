@@ -14,19 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-// Route::resource('conversion', App\Http\Controllers\ConversionAdminController::class)->only(['index','store','show','update','destroy']);
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-Route::middleware('auth:sanctum')->get('/authenticated', function () {
-    return true;
-});
-
 Route::post('login',[App\Http\Controllers\CurrencyConverterController::class, 'login']);
 
 Route::get('getServerStatus',[App\Http\Controllers\CurrencyConverterController::class, 'getServerStatus']);
@@ -46,5 +33,3 @@ Route::get('getCurrencyPair/{id}',[App\Http\Controllers\CurrencyConverterControl
 Route::post('updateCurrencyPair/{id}',[App\Http\Controllers\CurrencyConverterController::class, 'updateCurrencyPair']);
 
 Route::post('updateCurrencyPairCount/{id}',[App\Http\Controllers\CurrencyConverterController::class, 'updateCurrencyPairCount']);
-
-// Route::get('currency_pairs', 'CurrencyPairsAdminController@index');

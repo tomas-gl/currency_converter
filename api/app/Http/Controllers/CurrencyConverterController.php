@@ -14,6 +14,11 @@ use App\Models\User;
 class CurrencyConverterController extends Controller
 {
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function login(Request $request){
 
         if(Auth::attempt($request->only('email', 'password'))){
@@ -25,6 +30,11 @@ class CurrencyConverterController extends Controller
         ]);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getServerStatus()
     {
         $status = "Service en marche";
@@ -45,16 +55,8 @@ class CurrencyConverterController extends Controller
             $currencyPair['second_currency_iso_code'] = Currency::where("id", $currencyPair->second_currency_id)->first()->iso_code; 
             $currencyPair['first_currency_name'] = Currency::where("id", $currencyPair->first_currency_id)->first()->currency_name; 
             $currencyPair['second_currency_name'] = Currency::where("id", $currencyPair->second_currency_id)->first()->currency_name; 
-            // $data['products'][$key]['categorie'] = Category::where("id", $product->category_id)->first()->name; 
         }
         return response()->json($currencyPairs);
-        //     [
-        //         'first_currency_id' => $first_currency_id,
-        //         'second_currency_id' => $second_currency_id,
-        //         'conversion_rate' => $conversion_rate,
-        //         // 'code' => 200
-        //     ]
-        // );
     }
 
     /**
@@ -98,17 +100,6 @@ class CurrencyConverterController extends Controller
             'message' => 'Devise créé !',
             'code' => 200
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
