@@ -81,6 +81,8 @@
             this.updateCurrencyPairCount();
         },
         methods:{
+
+            // Get selected currency info
             getSelectedCurrency(event){
                 this.firstSelection = true;
                 this.selectedCurrencyExiste = false;
@@ -127,6 +129,8 @@
                 }
                 this.updateCurrencyPairCount();
             },
+
+            // Convert a currency
             convertCurrency(event){
                 if(event.target.id == "firstConverion"){
                     this.firstConversion = event.target.value;
@@ -139,6 +143,8 @@
                     this.firstConversion = parseFloat(this.firstConversion).toFixed(2);
                 }
             },
+
+            // Get currencies pair list
             async getCurrencyPairs(){
                 let url = 'http://127.0.0.1:8000/api/getCurrencyPairs'
                 await axios.get(url).then(response =>{
@@ -150,6 +156,8 @@
                     console.log(error);
                 });
             },
+
+            // Get currencies list
             async getCurrencies(){
                 let url = 'http://127.0.0.1:8000/api/getCurrencies'
                 await axios.get(url).then(response =>{
@@ -161,6 +169,8 @@
                     console.log(error);
                 });
             },
+
+            // Update Currencies pair request count
             async updateCurrencyPairCount(){
                 if(!this.errors.length && this.firstSelection){
                     let formData = new FormData();

@@ -44,6 +44,8 @@
         created(){
         },
         methods:{
+            
+            // Login a user
             async login(){
                 this.errors = [];
                 if(!this.email.length){

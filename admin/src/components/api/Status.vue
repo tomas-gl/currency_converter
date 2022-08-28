@@ -21,6 +21,8 @@
             this.getServerStatus();
         },
         methods:{
+
+            // Get status of server
             async getServerStatus(){
                 let url = 'http://127.0.0.1:8000/api/getServerStatus'
                 await axios.get(url).then(response =>{

@@ -53,6 +53,8 @@
             this.getCurrencyPairs();
         },
         methods:{
+
+            // Get currencies pair list
             async getCurrencyPairs(){
                 let url = 'http://127.0.0.1:8000/api/getCurrencyPairs'
                 await axios.get(url).then(response =>{
@@ -65,6 +67,8 @@
                     console.log(error);
                 });
             },
+
+            // Delete a currencies pair
             async deleteCurrencyPair(id){
                 this.currencyPairDeleted = false;
                 let url = `http://127.0.0.1:8000/api/deleteCurrencyPair/${id}`;

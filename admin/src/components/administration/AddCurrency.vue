@@ -55,6 +55,8 @@
             this.getCurrencies();
         },
         methods:{
+
+            // Get currencies list
             async getCurrencies(){
                 let url = 'http://127.0.0.1:8000/api/getCurrencies'
                 await axios.get(url).then(response =>{
@@ -63,9 +65,13 @@
                     console.log(error);
                 });
             },
+
+            // Filter for on only letters
             onlyLettersAndSpaces(str) {
                 return /[^a-zA-Z]/.test(str);
             },
+
+            // Save a currency
             async saveCurrency(){
                 this.errors = [];
                 this.currencies.forEach(el => {

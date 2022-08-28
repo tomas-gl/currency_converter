@@ -92,15 +92,23 @@
             this.getCurrencyPairById();
         },
         methods:{
+
+            // Get first selected currency infos
             getFirstSelectedCurrency(event){
                 this.firstSelectedCurrency = event.target.options[event.target.selectedIndex].text;
             },
+
+            // Get second selected currency infos
             getSecondSelectedCurrency(event){
                 this.secondSelectedCurrency = event.target.options[event.target.selectedIndex].text;
             },
+
+            // Convert a currency
             convertCurrency(event){
                 this.convertedCurrency = parseFloat(1/event.target.value).toFixed(2);
             },
+
+            // Get currencies pair
             async getCurrencyPairs(){
                 let url = 'http://127.0.0.1:8000/api/getCurrencyPairs'
                 await axios.get(url).then(response =>{
@@ -114,6 +122,8 @@
                     console.log(error);
                 });
             },
+
+            // Get currencies list
             async getCurrencies(){
                 let url = 'http://127.0.0.1:8000/api/getCurrencies'
                 await axios.get(url).then(response =>{
@@ -122,6 +132,8 @@
                     console.log(error);
                 });
             },
+
+            // Get a currencies pair
             async getCurrencyPairById(){ 
                 let url = `http://127.0.0.1:8000/api/getCurrencyPair/${this.$route.params.id}`;
                 await axios.get(url).then(response =>{
@@ -142,6 +154,8 @@
                     });
                 });
             },
+
+            // Update a currencies pair
             async updateCurrencyPair(){
                 this.errors = [];
                 this.currencyPairs.forEach(element => {
