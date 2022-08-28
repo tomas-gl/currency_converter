@@ -1,6 +1,6 @@
 # Currency_Converter
 
-# API Folder:
+# API folder:
 ## Install depedencies:
 
 _composer install_
@@ -17,8 +17,12 @@ _php artisan migrate:fresh --seed_
 
 _php artisan serve_
 
+## User authentification:
 
-# admin Folder:
+_email: admin@admin.fr_
+_password: admin_
+
+# admin folder:
 ## Install depedencies:
 
 _npm install_
