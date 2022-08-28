@@ -57,11 +57,8 @@
                     formData.append('email', this.email);
                     formData.append('password', this.password);
                     let url = 'http://127.0.0.1:8000/api/login';
-                    await axios.post(url, formData).then((response) =>{
+                    await axios.post(url, formData).then(() =>{
                         this.$router.push('admin')
-                        if(response.status == 200){
-                            console.log(response.data.message);
-                        }
                     }).catch(error =>{
                         this.errors.push(error.response.data.message);
                     });
