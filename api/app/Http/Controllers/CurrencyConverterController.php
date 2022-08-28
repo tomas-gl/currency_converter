@@ -15,8 +15,9 @@ class CurrencyConverterController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
-     *
+     * Login a user.
+     * 
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function login(Request $request){
@@ -31,7 +32,7 @@ class CurrencyConverterController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Ping to server.
      *
      * @return \Illuminate\Http\Response
      */
@@ -42,7 +43,7 @@ class CurrencyConverterController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the currency pairs.
      *
      * @return \Illuminate\Http\Response
      */
@@ -60,7 +61,7 @@ class CurrencyConverterController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the currencies.
      *
      * @return \Illuminate\Http\Response
      */
@@ -71,7 +72,7 @@ class CurrencyConverterController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created currencies pair in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -90,6 +91,12 @@ class CurrencyConverterController extends Controller
         ]);
     }
 
+    /**
+     * Store a newly created currency in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function saveCurrency(Request $request)
     {
         $currency = new Currency();
@@ -103,7 +110,7 @@ class CurrencyConverterController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Display a currencies pair.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -115,7 +122,7 @@ class CurrencyConverterController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified currencies pair in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -135,7 +142,7 @@ class CurrencyConverterController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified currencies pair from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -157,7 +164,7 @@ class CurrencyConverterController extends Controller
     }
 
         /**
-     * Update the specified resource in storage.
+     * Update the specified currencies pair conversion request in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
