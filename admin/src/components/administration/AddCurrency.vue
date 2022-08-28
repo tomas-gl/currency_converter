@@ -59,7 +59,6 @@
                 let url = 'http://127.0.0.1:8000/api/getCurrencies'
                 await axios.get(url).then(response =>{
                     this.currencies = response.data;
-                    console.log(this.currencies);
                 }).catch(error =>{
                     console.log(error);
                 });
@@ -69,8 +68,6 @@
             },
             async saveCurrency(){
                 this.errors = [];
-                console.log(this.currencyName, this.isoCode)
-
                 this.currencies.forEach(el => {
                     if(el.iso_code == this.isoCode){
                         this.errors.push("Devise déjà existante");
@@ -91,10 +88,8 @@
                     let formData = new FormData();
                     formData.append('currencyName', this.currencyName);
                     formData.append('isoCode', this.isoCode.toUpperCase());
-                    console.log(formData);
                     let url = 'http://127.0.0.1:8000/api/saveCurrency';
                     await axios.post(url, formData).then((response) =>{
-                        console.log(response);
                         if(response.status == 200){
                             console.log(response.data.message);
                         }

@@ -46,8 +46,6 @@
                                     :value="secondConversion" @change="convertCurrency($event)">
                         </div>
                     </div>
-
-                    <!-- <button type="submit" class="btn btn-primary w-auto mx-auto">Modifier</button> -->
                 </form>
             </div>
         </div>
@@ -99,7 +97,6 @@
                      this.selectedCurrencyPairs[1] = event.target.options[event.target.selectedIndex].text;
                      this.secondSelectedCurrency = event.target.options[event.target.selectedIndex].text;
                 }
-                console.log(this.selectedCurrencyPairs);
                 this.currencyPairs.forEach(el => {
                     if(
                         el.first_currency_iso_code == this.selectedCurrencyPairs[0] && el.second_currency_iso_code == this.selectedCurrencyPairs[1]
@@ -109,7 +106,6 @@
                         this.selectedCurrencyPair = el;
                         this.selectedCurrencyExiste = true;
                         this.selectedCurrencyPair.conversion_request++;
-                        console.log(this.selectedCurrencyPair);
                         if(el.first_currency_iso_code == this.selectedCurrencyPairs[0] && el.second_currency_iso_code == this.selectedCurrencyPairs[1]){
                             this.firstConversionRate = el.conversion_rate;
                             this.secondConversionRate = parseFloat(1/el.conversion_rate).toFixed(2);
@@ -150,7 +146,6 @@
                     this.currencyPairs.forEach(element => {
                         element.convertedCurrency = parseFloat(1/element.conversion_rate).toFixed(2);
                     });
-                    console.log(this.currencyPairs);
                 }).catch(error =>{
                     console.log(error);
                 });
@@ -162,8 +157,6 @@
                     this.selectedCurrencyPairs = [this.currencies[0].iso_code, this.currencies[0].iso_code];
                     this.firstSelectedCurrency = this.currencies[0].iso_code;
                     this.secondSelectedCurrency = this.currencies[0].iso_code;
-                    console.log(this.selectedCurrencyPairs);
-                    console.log(this.currencies);
                 }).catch(error =>{
                     console.log(error);
                 });
@@ -174,11 +167,8 @@
                     formData.append('conversionRequest', this.selectedCurrencyPair.conversion_request);
                     let url = `http://127.0.0.1:8000/api/updateCurrencyPairCount/${this.selectedCurrencyPair.id}`;
                     await axios.post(url, formData).then((response) =>{
-                        console.log(response);
                         if(response.status == 200){
                             console.log(response.data.message);
-                        } else{
-                            console.log('error');
                         }
                     }).catch(error =>{
                         this.errors.push(error.response);
